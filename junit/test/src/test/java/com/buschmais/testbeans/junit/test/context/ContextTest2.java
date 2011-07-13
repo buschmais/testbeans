@@ -21,6 +21,6 @@ package com.buschmais.testbeans.junit.test.context;
  * 
  * @author dirk.mahler
  */
-public class SecondContextTest extends AbstractContextTest {
+public class ContextTest2 extends AbstractContextTest {
 
 }

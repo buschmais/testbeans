@@ -21,6 +21,7 @@ import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 
+import com.buschmais.testbeans.junit.extension.WeldManager;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 
 /**
@@ -36,9 +37,9 @@ public class TestContextExtension implements Extension {
 	 */
 	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event,
 			BeanManager manager) {
-		WeldRule cdiRule = WeldRule.getInstance();
-		event.addContext(cdiRule.getMethodContext());
-		event.addContext(cdiRule.getClassContext());
-		event.addContext(cdiRule.getSuiteContext());
+		WeldManager weldManager = WeldManager.getInstance();
+		event.addContext(weldManager.getMethodContext());
+		event.addContext(weldManager.getClassContext());
+		event.addContext(weldManager.getSuiteContext());
 	}
 }

@@ -76,7 +76,7 @@ public abstract class AbstractContextTest extends AbstractCdiTest {
 	}
 
 	private static AbstractScopedBean getBean(Class<?> beanClass) {
-		return (AbstractScopedBean) weldRule.getWeldContainer().instance()
+		return (AbstractScopedBean) getWeldContainer().instance()
 				.select(beanClass).get();
 	}
 

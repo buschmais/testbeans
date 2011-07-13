@@ -47,7 +47,7 @@ public class ProducerDisposerTest extends AbstractCdiTest {
 	@Test
 	@SuppressWarnings("serial")
 	public void testProduceDispose() {
-		WeldContainer weldContainer = weldRule.getWeldContainer();
+		WeldContainer weldContainer = getWeldContainer();
 		Resource resource = weldContainer.instance()
 				.select(Resource.class, new AnnotationLiteral<Managed>() {
 				}).get();
@@ -57,8 +57,8 @@ public class ProducerDisposerTest extends AbstractCdiTest {
 	}
 
 	private static ResourceProducer getResourceProducer() {
-		ResourceProducer resourceProducer = weldRule.getWeldContainer()
-				.instance().select(ResourceProducer.class).get();
+		ResourceProducer resourceProducer = getWeldContainer().instance()
+				.select(ResourceProducer.class).get();
 		return resourceProducer;
 	}
 }

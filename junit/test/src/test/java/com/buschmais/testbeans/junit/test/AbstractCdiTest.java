@@ -16,9 +16,11 @@
  */
 package com.buschmais.testbeans.junit.test;
 
+import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.ClassRule;
 import org.junit.Rule;
 
+import com.buschmais.testbeans.junit.extension.WeldManager;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 
 /**
@@ -33,6 +35,14 @@ public abstract class AbstractCdiTest {
 	 */
 	@Rule
 	@ClassRule
-	public static WeldRule weldRule = WeldRule.getInstance();
+	public static WeldRule weldRule = new WeldRule();
 
+	/**
+	 * Returns the instance of the {@link WeldContainer}.
+	 * 
+	 * @return The {@link WeldContainer}.
+	 */
+	public static WeldContainer getWeldContainer() {
+		return WeldManager.getInstance().getWeldContainer();
+	}
 }

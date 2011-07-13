@@ -85,7 +85,7 @@ public class EventTest extends AbstractCdiTest {
 	}
 
 	private static Observer getObserver() {
-		Observer observer = weldRule.getWeldContainer().instance()
+		Observer observer = getWeldContainer().instance()
 				.select(Observer.class).get();
 		return observer;
 	}

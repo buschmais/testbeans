@@ -31,7 +31,7 @@ import com.buschmais.testbeans.junit.test.bean.context.SuiteScopedBean;
  * 
  * @author dirk.mahler
  */
-public class FirstContextTest extends AbstractContextTest {
+public class ContextTest1 extends AbstractContextTest {
 
 	@BeforeClass
 	public static void beforeConcreteClass() {
