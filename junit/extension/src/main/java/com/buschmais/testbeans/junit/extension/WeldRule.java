@@ -24,8 +24,7 @@ import org.junit.runners.model.Statement;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
- * JUnit-related contexts, see {@link SuiteScoped}, {@link ClassScoped} and
- * {@link MethodScoped}.
+ * JUnit-related contexts, see {@link ClassScoped} and {@link MethodScoped}.
  * 
  * Usage:
  * 
