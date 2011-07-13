@@ -22,7 +22,7 @@ limitations under the License.
 	<name>com.buschmais.testbeans</name>
 	<version>0.9.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<url>https://github.com/dirk-mahler/testbeans</url>
+	<url>https://github.com/buschmais/testbeans</url>
 	<description>
        TestBeans aims to integrate JUnit 4.9 and later with Contexts and Dependency Injection (JSR-299) using the reference implementation Weld.
     </description>
@@ -38,9 +38,9 @@ limitations under the License.
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:git://github.com/dirk-mahler/testbeans.git</connection>
-		<developerConnection>scm:git:git@github.com:dirk-mahler/testbeans.git</developerConnection>
-		<url>https://github.com/dirk-mahler/testbeans</url>
+		<connection>scm:git:git://github.com/buschmais/testbeans.git</connection>
+		<developerConnection>scm:git:git@github.com:buschmais/testbeans.git</developerConnection>
+		<url>https://github.com/buschmais/testbeans</url>
 	</scm>
 	<developers>
 		<developer>
