@@ -157,9 +157,9 @@ public abstract class Container {
 	 *            The Type.
 	 * @return The instance.
 	 */
-	@SuppressWarnings("serial")
+	@SuppressWarnings({ "serial", "unchecked" })
 	public <T> T get(Type type) {
-		return this.get(type, new AnnotationLiteral<Default>() {
+		return (T) this.get(type, new AnnotationLiteral<Default>() {
 		});
 	}
 
