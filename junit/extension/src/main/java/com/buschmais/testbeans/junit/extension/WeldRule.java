@@ -16,17 +16,15 @@
  */
 package com.buschmais.testbeans.junit.extension;
 
-import javax.enterprise.util.AnnotationLiteral;
-
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import com.buschmais.testbeans.core.After;
-import com.buschmais.testbeans.core.Before;
 import com.buschmais.testbeans.core.ClassScoped;
 import com.buschmais.testbeans.core.MethodScoped;
-import com.buschmais.testbeans.core.WeldManager;
+import com.buschmais.testbeans.core.description.ClassDescription;
+import com.buschmais.testbeans.core.description.MethodDescription;
+import com.buschmais.testbeans.weldse.WeldSETestContextManager;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
@@ -68,17 +66,16 @@ public class WeldRule implements TestRule {
 	 * @param description
 	 *            The test description provided by JUnit.
 	 */
-	@SuppressWarnings("serial")
 	private void before(Description description) {
-		WeldManager weldManager = WeldManager.getInstance();
+		WeldSETestContextManager weldManager = WeldSETestContextManager
+				.getInstance();
 		if (description.isTest()) {
-			weldManager.getMethodContext().activate();
+			weldManager.activateMethodContext(new MethodDescription(description
+					.getMethodName()));
 		} else {
-			weldManager.getClassContext().activate();
+			weldManager.activateClassContext(new ClassDescription(description
+					.getClassName()));
 		}
-		weldManager.getWeldContainer().event()
-				.select(Description.class, new AnnotationLiteral<Before>() {
-				}).fire(description);
 	}
 
 	/**
@@ -87,16 +84,15 @@ public class WeldRule implements TestRule {
 	 * @param description
 	 *            The test description provided by JUnit.
 	 */
-	@SuppressWarnings("serial")
 	private void after(Description description) {
-		WeldManager weldManager = WeldManager.getInstance();
-		weldManager.getWeldContainer().event()
-				.select(Description.class, new AnnotationLiteral<After>() {
-				}).fire(description);
+		WeldSETestContextManager weldManager = WeldSETestContextManager
+				.getInstance();
 		if (description.isTest()) {
-			weldManager.getMethodContext().deactivate();
+			weldManager.deactivateMethodContext(new MethodDescription(
+					description.getMethodName()));
 		} else {
-			weldManager.getClassContext().deactivate();
+			weldManager.deactivateClassContext(new ClassDescription(description
+					.getClassName()));
 		}
 	}
 }

@@ -23,7 +23,7 @@ import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
 import com.buschmais.testbeans.core.SuiteScoped;
-import com.buschmais.testbeans.core.WeldManager;
+import com.buschmais.testbeans.weldse.WeldSETestContextManager;
 
 /**
  * A {@link Runner} which derives from {@link Suite} and controls the lifecycle
@@ -57,7 +57,8 @@ public class WeldSuite extends Suite {
 
 	@Override
 	public void run(RunNotifier notifier) {
-		WeldManager weldManager = WeldManager.getInstance();
+		WeldSETestContextManager weldManager = WeldSETestContextManager
+				.getInstance();
 		try {
 			weldManager.getSuiteContext().activate();
 			super.run(notifier);

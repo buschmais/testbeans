@@ -25,8 +25,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.Description;
 
+import com.buschmais.testbeans.core.description.ClassDescription;
+import com.buschmais.testbeans.core.description.Description;
+import com.buschmais.testbeans.core.description.MethodDescription;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 import com.buschmais.testbeans.junit.test.AbstractCdiTest;
 import com.buschmais.testbeans.junit.test.bean.event.Observer;
@@ -46,8 +48,10 @@ public class EventTest extends AbstractCdiTest {
 	public static void beforeClass() {
 		Description description = getBeforeEvents().poll();
 		Assert.assertNotNull(description);
-		Assert.assertTrue(description.isSuite());
-		Assert.assertEquals(EventTest.class, description.getTestClass());
+		Assert.assertTrue(ClassDescription.class.isAssignableFrom(description
+				.getClass()));
+		Assert.assertEquals(EventTest.class.getName(),
+				((ClassDescription) description).getClassName());
 		Assert.assertNull(getBeforeEvents().peek());
 		Assert.assertNull(getAfterEvents().peek());
 	}
@@ -56,8 +60,10 @@ public class EventTest extends AbstractCdiTest {
 	public void before() {
 		Description description = getBeforeEvents().poll();
 		Assert.assertNotNull(description);
-		Assert.assertTrue(description.isTest());
-		Assert.assertEquals("test", description.getMethodName());
+		Assert.assertTrue(MethodDescription.class.isAssignableFrom(description
+				.getClass()));
+		Assert.assertEquals("test",
+				((MethodDescription) description).getMethodName());
 		Assert.assertNull(getBeforeEvents().peek());
 		Assert.assertNull(getAfterEvents().peek());
 	}
@@ -78,8 +84,10 @@ public class EventTest extends AbstractCdiTest {
 	public static void afterClass() {
 		Description description = getAfterEvents().poll();
 		Assert.assertNotNull(description);
-		Assert.assertTrue(description.isTest());
-		Assert.assertEquals("test", description.getMethodName());
+		Assert.assertTrue(MethodDescription.class.isAssignableFrom(description
+				.getClass()));
+		Assert.assertEquals("test",
+				((MethodDescription) description).getMethodName());
 		Assert.assertNull(getBeforeEvents().peek());
 		Assert.assertNull(getAfterEvents().peek());
 	}

@@ -21,11 +21,10 @@ import java.util.Queue;
 
 import javax.enterprise.event.Observes;
 
-import org.junit.runner.Description;
-
 import com.buschmais.testbeans.core.After;
 import com.buschmais.testbeans.core.Before;
 import com.buschmais.testbeans.core.ClassScoped;
+import com.buschmais.testbeans.core.description.Description;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 
 /**

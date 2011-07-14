@@ -20,8 +20,8 @@ import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.ClassRule;
 import org.junit.Rule;
 
-import com.buschmais.testbeans.core.WeldManager;
 import com.buschmais.testbeans.junit.extension.WeldRule;
+import com.buschmais.testbeans.weldse.WeldSETestContextManager;
 
 /**
  * Abstract base class for CDI tests.
@@ -43,6 +43,6 @@ public abstract class AbstractCdiTest {
 	 * @return The {@link WeldContainer}.
 	 */
 	public static WeldContainer getWeldContainer() {
-		return WeldManager.getInstance().getWeldContainer();
+		return WeldSETestContextManager.getInstance().getWeldContainer();
 	}
 }

@@ -26,6 +26,14 @@ import com.buschmais.testbeans.core.description.ClassDescription;
 import com.buschmais.testbeans.core.description.MethodDescription;
 import com.buschmais.testbeans.core.description.SuiteDescription;
 
+/**
+ * 
+ * Abstract implementation of a manager which provides access to a CDI container
+ * and allows lifecycle control of the test contexts.
+ * 
+ * @author dirk.mahler
+ * 
+ */
 public abstract class TestContextManager {
 	/**
 	 * The suite context.

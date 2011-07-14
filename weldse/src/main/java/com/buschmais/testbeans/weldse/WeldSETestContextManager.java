@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.core;
+package com.buschmais.testbeans.weldse;
 
 import javax.enterprise.inject.spi.BeanManager;
 
@@ -23,24 +23,23 @@ import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.buschmais.testbeans.core.TestContextManager;
+
 /**
  * Controls the life cycle of Weld (http://seamframework.org/Weld) providing
  * dependency injection services.
- * <p>
- * Methods are provided to access the various contexts and the weld container.
- * </p>
  * 
  * @author dirk.mahler
  */
-public class WeldTestContextManager extends TestContextManager {
+public class WeldSETestContextManager extends TestContextManager {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WeldTestContextManager.class);
+			.getLogger(WeldSETestContextManager.class);
 
 	/**
 	 * The Weld rule is singleton instance.
 	 */
-	private static final WeldTestContextManager INSTANCE = new WeldTestContextManager();
+	private static final WeldSETestContextManager INSTANCE = new WeldSETestContextManager();
 
 	/**
 	 * The {@link Weld} and {@link WeldContainer} instances managed by this
@@ -71,7 +70,7 @@ public class WeldTestContextManager extends TestContextManager {
 	/**
 	 * Private constructor.
 	 */
-	private WeldTestContextManager() {
+	private WeldSETestContextManager() {
 	}
 
 	/**
@@ -79,7 +78,7 @@ public class WeldTestContextManager extends TestContextManager {
 	 * 
 	 * @return The singleton instance.
 	 */
-	public static WeldTestContextManager getInstance() {
+	public static WeldSETestContextManager getInstance() {
 		return INSTANCE;
 	}
 
