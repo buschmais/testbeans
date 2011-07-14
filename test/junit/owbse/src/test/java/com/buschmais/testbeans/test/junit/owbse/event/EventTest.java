@@ -22,8 +22,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.junit.owbse.OpenWebBeansSERule;
-import com.buschmais.testbeans.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.test.junit.common.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.owbse.AbstractOpenWebBeansSETest;
 

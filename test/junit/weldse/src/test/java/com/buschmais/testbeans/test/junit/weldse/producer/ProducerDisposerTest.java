@@ -20,9 +20,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.test.junit.common.producer.ProducerDisposerTestDelegate;
 import com.buschmais.testbeans.test.junit.weldse.AbstractWeldSETest;
-import com.buschmais.testbeans.weldse.WeldSEContainer;
 
 /**
  * Test checking if activation and deactivation of a scope produces and disposes

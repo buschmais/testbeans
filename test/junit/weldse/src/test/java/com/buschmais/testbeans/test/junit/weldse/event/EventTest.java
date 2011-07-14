@@ -22,10 +22,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.junit.weldse.WeldSERule;
 import com.buschmais.testbeans.test.junit.common.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.weldse.AbstractWeldSETest;
-import com.buschmais.testbeans.weldse.WeldSEContainer;
 
 /**
  * Test implementation checking the events fired by the {@link WeldSERule}.

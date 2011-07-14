@@ -18,6 +18,8 @@ package com.buschmais.testbeans.framework;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.Bean;
@@ -27,6 +29,7 @@ import javax.enterprise.util.AnnotationLiteral;
 import com.buschmais.testbeans.framework.context.ClassContext;
 import com.buschmais.testbeans.framework.context.MethodContext;
 import com.buschmais.testbeans.framework.context.SuiteContext;
+import com.buschmais.testbeans.framework.context.TestContext;
 import com.buschmais.testbeans.framework.description.ClassDescription;
 import com.buschmais.testbeans.framework.description.MethodDescription;
 import com.buschmais.testbeans.framework.description.SuiteDescription;
@@ -146,6 +149,16 @@ public abstract class Container {
 				new AnnotationLiteral<After>() {
 				});
 		this.methodContext.deactivate();
+	}
+
+	/**
+	 * Returns a list of all managed test contexts.
+	 * 
+	 * @return A list of all managed test contexts.
+	 */
+	public List<TestContext> getTestContexts() {
+		return Arrays.asList(new TestContext[] { suiteContext, classContext,
+				methodContext });
 	}
 
 	/**

@@ -22,8 +22,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
+import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.framework.SuiteScoped;
-import com.buschmais.testbeans.weldse.WeldSEContainer;
 
 /**
  * A {@link Runner} which derives from {@link Suite} and controls the lifecycle

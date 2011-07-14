@@ -20,12 +20,12 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.MethodScoped;
 import com.buschmais.testbeans.framework.description.ClassDescription;
 import com.buschmais.testbeans.framework.description.MethodDescription;
-import com.buschmais.testbeans.owbse.OpenWebBeansSEContainer;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of

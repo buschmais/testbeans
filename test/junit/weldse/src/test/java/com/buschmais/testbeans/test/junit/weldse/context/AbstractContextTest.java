@@ -22,9 +22,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.test.junit.common.context.AbstractContextTestDelegate;
 import com.buschmais.testbeans.test.junit.weldse.AbstractWeldSETest;
-import com.buschmais.testbeans.weldse.WeldSEContainer;
 
 /**
  * Abstract base class for tests checking correct scoping of the beans.

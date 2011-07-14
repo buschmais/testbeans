@@ -19,12 +19,12 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.buschmais.testbeans</groupId>
-		<artifactId>testbeans</artifactId>
+		<artifactId>testbeans.container</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>testbeans.weldse</artifactId>
-	<name>com.buschmais.testbeans.weldse</name>
+	<artifactId>testbeans.container.weldse</artifactId>
+	<name>com.buschmais.testbeans.container.weldse</name>
 
 	<dependencies>
 		<dependency>

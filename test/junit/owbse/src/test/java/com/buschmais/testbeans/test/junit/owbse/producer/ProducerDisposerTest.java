@@ -20,7 +20,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.buschmais.testbeans.owbse.OpenWebBeansSEContainer;
+import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.test.junit.common.producer.ProducerDisposerTestDelegate;
 import com.buschmais.testbeans.test.junit.owbse.AbstractOpenWebBeansSETest;
 

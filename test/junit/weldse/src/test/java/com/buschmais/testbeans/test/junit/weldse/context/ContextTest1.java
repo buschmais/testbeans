@@ -22,8 +22,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.test.junit.common.context.ContextTest1Delegate;
-import com.buschmais.testbeans.weldse.WeldSEContainer;
 
 /**
  * Concrete implementation of a test checking correct scoping of beans.
