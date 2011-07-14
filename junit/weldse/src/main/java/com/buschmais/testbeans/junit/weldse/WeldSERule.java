@@ -17,14 +17,12 @@
 package com.buschmais.testbeans.junit.weldse;
 
 import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 
 import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.MethodScoped;
-import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.framework.description.MethodDescription;
+import com.buschmais.testbeans.junit.common.AbstractRule;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
@@ -40,59 +38,14 @@ import com.buschmais.testbeans.framework.description.MethodDescription;
  * 
  * @author dirk.mahler
  */
-public class WeldSERule implements TestRule {
+public class WeldSERule extends AbstractRule {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Statement apply(final Statement base, final Description description) {
-		return new Statement() {
-			@Override
-			public void evaluate() throws Throwable {
-				before(description);
-				try {
-					base.evaluate();
-				} finally {
-					after(description);
-				}
-			}
-		};
+	protected Container getContainer() {
+		return WeldSEContainer.getInstance();
 	}
 
-	/**
-	 * This method is called before a test class or test method is executed.
-	 * 
-	 * @param description
-	 *            The test description provided by JUnit.
-	 */
-	private void before(Description description) {
-		WeldSEContainer weldManager = WeldSEContainer
-				.getInstance();
-		if (description.isTest()) {
-			weldManager.activateMethodContext(new MethodDescription(description
-					.getMethodName()));
-		} else {
-			weldManager.activateClassContext(new ClassDescription(description
-					.getClassName()));
-		}
-	}
-
-	/**
-	 * This method is called after a test class or test method was executed.
-	 * 
-	 * @param description
-	 *            The test description provided by JUnit.
-	 */
-	private void after(Description description) {
-		WeldSEContainer weldManager = WeldSEContainer
-				.getInstance();
-		if (description.isTest()) {
-			weldManager.deactivateMethodContext(new MethodDescription(
-					description.getMethodName()));
-		} else {
-			weldManager.deactivateClassContext(new ClassDescription(description
-					.getClassName()));
-		}
-	}
 }

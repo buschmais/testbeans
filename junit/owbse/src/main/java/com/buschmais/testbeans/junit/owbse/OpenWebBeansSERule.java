@@ -17,15 +17,12 @@
 package com.buschmais.testbeans.junit.owbse;
 
 import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 
 import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.MethodScoped;
-import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.framework.description.MethodDescription;
+import com.buschmais.testbeans.junit.common.AbstractRule;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
@@ -41,57 +38,13 @@ import com.buschmais.testbeans.framework.description.MethodDescription;
  * 
  * @author dirk.mahler
  */
-public class OpenWebBeansSERule implements TestRule {
+public class OpenWebBeansSERule extends AbstractRule {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Statement apply(final Statement base, final Description description) {
-		return new Statement() {
-			@Override
-			public void evaluate() throws Throwable {
-				before(description);
-				try {
-					base.evaluate();
-				} finally {
-					after(description);
-				}
-			}
-		};
-	}
-
-	/**
-	 * This method is called before a test class or test method is executed.
-	 * 
-	 * @param description
-	 *            The test description provided by JUnit.
-	 */
-	private void before(Description description) {
-		Container container = OpenWebBeansSEContainer.getInstance();
-		if (description.isTest()) {
-			container.activateMethodContext(new MethodDescription(description
-					.getMethodName()));
-		} else {
-			container.activateClassContext(new ClassDescription(description
-					.getClassName()));
-		}
-	}
-
-	/**
-	 * This method is called after a test class or test method was executed.
-	 * 
-	 * @param description
-	 *            The test description provided by JUnit.
-	 */
-	private void after(Description description) {
-		Container container = OpenWebBeansSEContainer.getInstance();
-		if (description.isTest()) {
-			container.deactivateMethodContext(new MethodDescription(description
-					.getMethodName()));
-		} else {
-			container.deactivateClassContext(new ClassDescription(description
-					.getClassName()));
-		}
+	protected Container getContainer() {
+		return OpenWebBeansSEContainer.getInstance();
 	}
 }

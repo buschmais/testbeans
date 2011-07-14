@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.owbse;
+package com.buschmais.testbeans.junit.common;
 
 import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
@@ -22,14 +22,12 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
-import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.SuiteScoped;
-import com.buschmais.testbeans.junit.common.AbstractSuite;
 
 /**
- * A {@link Runner} which derives from {@link Suite} and controls the lifecycle
- * of the suite context, see {@link SuiteScoped}.
+ * Abstract {@link Runner} which derives from {@link Suite} and controls the
+ * lifecycle of the suite context, see {@link SuiteScoped}.
  * <p>
  * This runner may be used if a suite is defined using {@link SuiteClasses}:
  * 
@@ -45,23 +43,33 @@ import com.buschmais.testbeans.junit.common.AbstractSuite;
  * 
  * @author dirk.mahler
  */
-public class OpenWebBeansSESuite extends AbstractSuite {
+public abstract class AbstractSuite extends Suite {
 
-	public OpenWebBeansSESuite(Class<?> klass, RunnerBuilder builder)
+	public AbstractSuite(Class<?> klass, RunnerBuilder builder)
 			throws InitializationError {
 		super(klass, builder);
 	}
 
-	public OpenWebBeansSESuite(RunnerBuilder builder, Class<?>[] classes)
+	public AbstractSuite(RunnerBuilder builder, Class<?>[] classes)
 			throws InitializationError {
 		super(builder, classes);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Container getContainer() {
-		return OpenWebBeansSEContainer.getInstance();
+	public void run(RunNotifier notifier) {
+		Container container = this.getContainer();
+		try {
+			container.getSuiteContext().activate();
+			super.run(notifier);
+		} finally {
+			container.getSuiteContext().deactivate();
+		}
 	}
+
+	/**
+	 * Returns the {@link Container}.
+	 * 
+	 * @return The {@link Container}.
+	 */
+	protected abstract Container getContainer();
 }

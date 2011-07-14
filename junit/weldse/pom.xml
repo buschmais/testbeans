@@ -31,8 +31,8 @@ limitations under the License.
 			<artifactId>testbeans.container.weldse</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>com.buschmais.testbeans</groupId>
+			<artifactId>testbeans.junit.common</artifactId>
 		</dependency>
 	</dependencies>
 </project>

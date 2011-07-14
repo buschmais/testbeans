@@ -23,7 +23,9 @@ import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
 import com.buschmais.testbeans.container.weldse.WeldSEContainer;
+import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.SuiteScoped;
+import com.buschmais.testbeans.junit.common.AbstractSuite;
 
 /**
  * A {@link Runner} which derives from {@link Suite} and controls the lifecycle
@@ -43,7 +45,7 @@ import com.buschmais.testbeans.framework.SuiteScoped;
  * 
  * @author dirk.mahler
  */
-public class WeldSESuite extends Suite {
+public class WeldSESuite extends AbstractSuite {
 
 	public WeldSESuite(Class<?> klass, RunnerBuilder builder)
 			throws InitializationError {
@@ -55,16 +57,11 @@ public class WeldSESuite extends Suite {
 		super(builder, classes);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void run(RunNotifier notifier) {
-		WeldSEContainer weldManager = WeldSEContainer
-				.getInstance();
-		try {
-			weldManager.getSuiteContext().activate();
-			super.run(notifier);
-		} finally {
-			weldManager.getSuiteContext().deactivate();
-		}
+	protected Container getContainer() {
+		return WeldSEContainer.getInstance();
 	}
-
 }

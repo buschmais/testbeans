@@ -22,17 +22,17 @@ limitations under the License.
 		<artifactId>testbeans.junit</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>testbeans.junit.owbse</artifactId>
-	<name>com.buschmais.testbeans.junit.owbse</name>
+	<artifactId>testbeans.junit.common</artifactId>
+	<name>com.buschmais.testbeans.junit.common</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>
-			<artifactId>testbeans.container.owbse</artifactId>
+			<artifactId>testbeans.framework</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.buschmais.testbeans</groupId>
-			<artifactId>testbeans.junit.common</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 		</dependency>
 	</dependencies>
 </project>
