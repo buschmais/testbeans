@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension;
+package com.buschmais.testbeans.core;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

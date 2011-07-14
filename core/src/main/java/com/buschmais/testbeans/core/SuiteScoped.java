@@ -14,23 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension;
+package com.buschmais.testbeans.core;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.inject.Qualifier;
+import javax.enterprise.context.NormalScope;
 
 /**
- * Qualifier identifying after events fired by the {@link WeldRule}.
+ * Specifies that a bean is suite scoped.
  * 
  * @author dirk.mahler
  */
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
-public @interface After {
-
+@Target(value = { ElementType.METHOD, ElementType.TYPE, ElementType.FIELD })
+@Retention(value = RetentionPolicy.RUNTIME)
+@NormalScope
+@Inherited
+public @interface SuiteScoped {
 }

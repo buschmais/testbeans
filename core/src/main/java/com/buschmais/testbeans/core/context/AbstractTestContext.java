@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension.context;
+package com.buschmais.testbeans.core.context;
 
 import java.util.HashMap;
 import java.util.Map;

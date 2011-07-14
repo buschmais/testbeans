@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension;
+package com.buschmais.testbeans.core;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.buschmais.testbeans.junit.extension.context.ClassContext;
-import com.buschmais.testbeans.junit.extension.context.MethodContext;
-import com.buschmais.testbeans.junit.extension.context.SuiteContext;
+import com.buschmais.testbeans.core.context.ClassContext;
+import com.buschmais.testbeans.core.context.MethodContext;
+import com.buschmais.testbeans.core.context.SuiteContext;
 
 /**
  * Controls the life cycle of Weld (http://seamframework.org/Weld) providing

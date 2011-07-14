@@ -14,24 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension;
+package com.buschmais.testbeans.core;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.enterprise.context.NormalScope;
+import javax.inject.Qualifier;
 
 /**
- * Specifies that a bean is suite scoped.
+ * Qualifier identifying before events.
  * 
  * @author dirk.mahler
  */
-@Target(value = { ElementType.METHOD, ElementType.TYPE, ElementType.FIELD })
-@Retention(value = RetentionPolicy.RUNTIME)
-@NormalScope
-@Inherited
-public @interface SuiteScoped {
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+public @interface Before {
 }

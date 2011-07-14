@@ -14,24 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension.context;
+package com.buschmais.testbeans.core;
 
-import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import com.buschmais.testbeans.junit.extension.SuiteScoped;
+import javax.inject.Qualifier;
 
 /**
- * The suite context.
+ * Qualifier identifying after events.
  * 
  * @author dirk.mahler
  */
-public class SuiteContext extends AbstractTestContext {
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+public @interface After {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Class<? extends Annotation> getScope() {
-		return SuiteScoped.class;
-	}
 }

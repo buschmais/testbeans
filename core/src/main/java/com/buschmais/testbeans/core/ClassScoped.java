@@ -14,24 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension.context;
+package com.buschmais.testbeans.core;
 
-import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import com.buschmais.testbeans.junit.extension.MethodScoped;
+import javax.enterprise.context.NormalScope;
 
 /**
- * The method context.
+ * Specifies that a bean is class scoped.
  * 
  * @author dirk.mahler
  */
-public class MethodContext extends AbstractTestContext {
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Class<? extends Annotation> getScope() {
-		return MethodScoped.class;
-	}
+@Target(value = { ElementType.METHOD, ElementType.TYPE, ElementType.FIELD })
+@Retention(value = RetentionPolicy.RUNTIME)
+@NormalScope
+@Inherited
+public @interface ClassScoped {
 }

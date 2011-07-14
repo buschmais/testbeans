@@ -14,15 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.extension.context;
+package com.buschmais.testbeans.core.context;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 
-import com.buschmais.testbeans.junit.extension.WeldManager;
-import com.buschmais.testbeans.junit.extension.WeldRule;
+import com.buschmais.testbeans.core.WeldManager;
 
 /**
  * Implementation of {@link Exception} as defined by JSR-299 which registers the
