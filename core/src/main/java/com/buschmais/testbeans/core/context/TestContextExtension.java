@@ -21,11 +21,11 @@ import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.Extension;
 
-import com.buschmais.testbeans.core.WeldManager;
+import com.buschmais.testbeans.core.WeldTestContextManager;
 
 /**
  * Implementation of {@link Extension} as defined by JSR-299 which registers the
- * customs contexts controlled by the {@link WeldManager}.
+ * customs contexts controlled by the {@link WeldTestContextManager}.
  * 
  * @author dirk.mahler
  */
@@ -36,7 +36,7 @@ public class TestContextExtension implements Extension {
 	 */
 	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event,
 			BeanManager manager) {
-		WeldManager weldManager = WeldManager.getInstance();
+		WeldTestContextManager weldManager = WeldTestContextManager.getInstance();
 		event.addContext(weldManager.getMethodContext());
 		event.addContext(weldManager.getClassContext());
 		event.addContext(weldManager.getSuiteContext());

@@ -16,14 +16,12 @@
  */
 package com.buschmais.testbeans.core;
 
+import javax.enterprise.inject.spi.BeanManager;
+
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.buschmais.testbeans.core.context.ClassContext;
-import com.buschmais.testbeans.core.context.MethodContext;
-import com.buschmais.testbeans.core.context.SuiteContext;
 
 /**
  * Controls the life cycle of Weld (http://seamframework.org/Weld) providing
@@ -34,30 +32,15 @@ import com.buschmais.testbeans.core.context.SuiteContext;
  * 
  * @author dirk.mahler
  */
-public class WeldManager {
+public class WeldTestContextManager extends TestContextManager {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WeldManager.class);
+			.getLogger(WeldTestContextManager.class);
 
 	/**
 	 * The Weld rule is singleton instance.
 	 */
-	private static final WeldManager INSTANCE = new WeldManager();
-
-	/**
-	 * The suite context.
-	 */
-	private SuiteContext suiteContext = new SuiteContext();
-
-	/**
-	 * The class context.
-	 */
-	private ClassContext classContext = new ClassContext();
-
-	/**
-	 * The method scope.
-	 */
-	private MethodContext methodContext = new MethodContext();
+	private static final WeldTestContextManager INSTANCE = new WeldTestContextManager();
 
 	/**
 	 * The {@link Weld} and {@link WeldContainer} instances managed by this
@@ -69,19 +52,18 @@ public class WeldManager {
 	/**
 	 * Static initializer.
 	 * <p>
-	 * The Weld container is started, the suite context initialized and a VM
-	 * shutdown hook is registered for cleanup.
+	 * The Weld container is started and a VM shutdown hook is registered for
+	 * cleanup.
 	 */
 	static {
 		LOGGER.debug("Starting Weld.");
-		INSTANCE.weld = new Weld();
-		INSTANCE.weldContainer = INSTANCE.weld.initialize();
+		INSTANCE.startContainer();
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 
 			@Override
 			public void run() {
 				LOGGER.debug("Stopping Weld.");
-				INSTANCE.weld.shutdown();
+				INSTANCE.stopContainer();
 			}
 		});
 	}
@@ -89,7 +71,7 @@ public class WeldManager {
 	/**
 	 * Private constructor.
 	 */
-	private WeldManager() {
+	private WeldTestContextManager() {
 	}
 
 	/**
@@ -97,35 +79,8 @@ public class WeldManager {
 	 * 
 	 * @return The singleton instance.
 	 */
-	public static WeldManager getInstance() {
+	public static WeldTestContextManager getInstance() {
 		return INSTANCE;
-	}
-
-	/**
-	 * Returns the {@link SuiteContext}.
-	 * 
-	 * @return The {@link SuiteContext}.
-	 */
-	public SuiteContext getSuiteContext() {
-		return suiteContext;
-	}
-
-	/**
-	 * Returns the {@link ClassContext}.
-	 * 
-	 * @return The {@link ClassContext}.
-	 */
-	public ClassContext getClassContext() {
-		return classContext;
-	}
-
-	/**
-	 * Returns the {@link MethodContext}.
-	 * 
-	 * @return The {@link MethodContext}.
-	 */
-	public MethodContext getMethodContext() {
-		return methodContext;
 	}
 
 	/**
@@ -137,4 +92,32 @@ public class WeldManager {
 		return weldContainer;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public BeanManager getBeanManager() {
+		return weldContainer.getBeanManager();
+	}
+
+	/**
+	 * Start the container.
+	 */
+	@Override
+	public void startContainer() {
+		weld = new Weld();
+		weldContainer = weld.initialize();
+	}
+
+	/**
+	 * Stop the container.
+	 */
+	@Override
+	public void stopContainer() {
+		if (weld != null) {
+			weld.shutdown();
+			weld = null;
+			weldContainer = null;
+		}
+	}
 }

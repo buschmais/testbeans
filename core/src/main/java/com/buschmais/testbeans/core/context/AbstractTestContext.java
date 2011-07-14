@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author dirk.mahler
  */
-public abstract class AbstractTestContext implements Context {
+public abstract class AbstractTestContext implements TestContext {
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AbstractTestContext.class);
@@ -83,9 +83,10 @@ public abstract class AbstractTestContext implements Context {
 	 */
 	private Map<Contextual<?>, ContextualInstance<?>> contextualInstances = null;
 
-	/**
-	 * Activates the context.
+	/* (non-Javadoc)
+	 * @see com.buschmais.testbeans.core.context.TestContext#activate()
 	 */
+	@Override
 	public void activate() {
 		if (contextualInstances == null) {
 			LOGGER.debug("Activating " + this.getClass().getSimpleName() + ".");
@@ -93,9 +94,10 @@ public abstract class AbstractTestContext implements Context {
 		}
 	}
 
-	/**
-	 * Deactivates the context and destroys all contextual instances.
+	/* (non-Javadoc)
+	 * @see com.buschmais.testbeans.core.context.TestContext#deactivate()
 	 */
+	@Override
 	public void deactivate() {
 		if (contextualInstances != null) {
 			LOGGER.debug("Deactivating " + this.getClass().getSimpleName()
