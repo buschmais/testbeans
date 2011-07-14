@@ -24,8 +24,8 @@ import javax.enterprise.inject.spi.Extension;
 import com.buschmais.testbeans.core.WeldManager;
 
 /**
- * Implementation of {@link Exception} as defined by JSR-299 which registers the
- * customs contexts controlled by the {@link WeldRule}.
+ * Implementation of {@link Extension} as defined by JSR-299 which registers the
+ * customs contexts controlled by the {@link WeldManager}.
  * 
  * @author dirk.mahler
  */
