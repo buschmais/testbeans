@@ -22,14 +22,12 @@ limitations under the License.
 		<artifactId>testbeans</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>testbeans.junit</artifactId>
-	<name>com.buschmais.testbeans.junit</name>
+	<artifactId>testbeans.test</artifactId>
+	<name>com.buschmais.testbeans.test</name>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>owbse</module>
-		<module>weldse</module>
+		<module>common</module>
+		<module>junit</module>
 	</modules>
-
 </project>

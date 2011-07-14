@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.weldse;
+package com.buschmais.testbeans.owbse;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
@@ -24,18 +24,18 @@ import javax.enterprise.inject.spi.Extension;
 
 /**
  * Implementation of {@link Extension} as defined by JSR-299 which registers the
- * customs contexts controlled by the {@link WeldSEContainer}.
+ * customs contexts controlled by the {@link OpenWebBeansSEContainer}.
  * 
  * @author dirk.mahler
  */
-public class WeldSETestContextExtension implements Extension {
+public class OpenWebBeansSETestContextExtension implements Extension {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event,
 			BeanManager manager) {
-		WeldSEContainer weldManager = WeldSEContainer.getInstance();
+		OpenWebBeansSEContainer weldManager = OpenWebBeansSEContainer.getInstance();
 		event.addContext(weldManager.getMethodContext());
 		event.addContext(weldManager.getClassContext());
 		event.addContext(weldManager.getSuiteContext());
