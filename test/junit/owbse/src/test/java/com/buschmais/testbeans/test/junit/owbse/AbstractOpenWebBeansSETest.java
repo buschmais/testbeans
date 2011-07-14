@@ -27,7 +27,7 @@ import com.buschmais.testbeans.junit.owbse.OpenWebBeansSERule;
  * 
  * @author dirk.mahler
  */
-public class AbstractOpenWebBeansSETest {
+public abstract class AbstractOpenWebBeansSETest {
 
 	@ClassRule
 	@Rule
