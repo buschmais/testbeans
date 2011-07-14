@@ -14,34 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.core.description;
+package com.buschmais.testbeans.framework.description;
 
 /**
- * Describes a test class.
+ * Describes a test suite.
  * 
  * @author dirk.mahler
  */
-public class MethodDescription extends Description {
-
-	private String methodName;
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param methodName
-	 *            The name of the test method.
-	 */
-	public MethodDescription(String methodName) {
-		this.methodName = methodName;
-	}
-
-	/**
-	 * Returns the name of the test method.
-	 * 
-	 * @return The name of the test method.
-	 */
-	public String getMethodName() {
-		return methodName;
-	}
+public class SuiteDescription extends Description {
 
 }

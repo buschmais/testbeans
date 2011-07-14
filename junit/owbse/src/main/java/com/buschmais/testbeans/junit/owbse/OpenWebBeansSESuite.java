@@ -22,8 +22,8 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
-import com.buschmais.testbeans.core.SuiteScoped;
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
+import com.buschmais.testbeans.framework.SuiteScoped;
 import com.buschmais.testbeans.owbse.OpenWebBeansSEContainer;
 
 /**

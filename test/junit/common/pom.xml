@@ -19,7 +19,7 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.buschmais.testbeans</groupId>
-		<artifactId>testbeans.test</artifactId>
+		<artifactId>testbeans.test.junit</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>testbeans.test.junit.common</artifactId>

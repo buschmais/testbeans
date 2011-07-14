@@ -14,24 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.core;
+package com.buschmais.testbeans.framework.context;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import javax.enterprise.context.NormalScope;
+import javax.enterprise.context.spi.Context;
 
 /**
- * Specifies that a bean is suite scoped.
+ * Interface describing a test context.
+ * <p>
+ * Adds methods for activation and deactivation of a context.
+ * </p>
  * 
  * @author dirk.mahler
  */
-@Target(value = { ElementType.METHOD, ElementType.TYPE, ElementType.FIELD })
-@Retention(value = RetentionPolicy.RUNTIME)
-@NormalScope
-@Inherited
-public @interface SuiteScoped {
+public interface TestContext extends Context {
+
+	/**
+	 * Activates the context.
+	 */
+	public void activate();
+
+	/**
+	 * Deactivates the context and destroys all contextual instances.
+	 */
+	public void deactivate();
+
 }

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.core;
+package com.buschmais.testbeans.framework;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -24,12 +24,12 @@ import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
 
-import com.buschmais.testbeans.core.context.ClassContext;
-import com.buschmais.testbeans.core.context.MethodContext;
-import com.buschmais.testbeans.core.context.SuiteContext;
-import com.buschmais.testbeans.core.description.ClassDescription;
-import com.buschmais.testbeans.core.description.MethodDescription;
-import com.buschmais.testbeans.core.description.SuiteDescription;
+import com.buschmais.testbeans.framework.context.ClassContext;
+import com.buschmais.testbeans.framework.context.MethodContext;
+import com.buschmais.testbeans.framework.context.SuiteContext;
+import com.buschmais.testbeans.framework.description.ClassDescription;
+import com.buschmais.testbeans.framework.description.MethodDescription;
+import com.buschmais.testbeans.framework.description.SuiteDescription;
 
 /**
  * 

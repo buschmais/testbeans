@@ -108,7 +108,7 @@ limitations under the License.
 		<dependencies>
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
-				<artifactId>testbeans.core</artifactId>
+				<artifactId>testbeans.framework</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -181,7 +181,7 @@ limitations under the License.
 	</dependencyManagement>
 
 	<modules>
-		<module>core</module>
+		<module>framework</module>
 		<module>owbse</module>
 		<module>weldse</module>
 		<module>junit</module>

@@ -20,11 +20,11 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import com.buschmais.testbeans.core.ClassScoped;
-import com.buschmais.testbeans.core.MethodScoped;
-import com.buschmais.testbeans.core.Container;
-import com.buschmais.testbeans.core.description.ClassDescription;
-import com.buschmais.testbeans.core.description.MethodDescription;
+import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.Container;
+import com.buschmais.testbeans.framework.MethodScoped;
+import com.buschmais.testbeans.framework.description.ClassDescription;
+import com.buschmais.testbeans.framework.description.MethodDescription;
 import com.buschmais.testbeans.owbse.OpenWebBeansSEContainer;
 
 /**

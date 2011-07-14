@@ -20,10 +20,10 @@ import java.util.Queue;
 
 import junit.framework.Assert;
 
-import com.buschmais.testbeans.core.Container;
-import com.buschmais.testbeans.core.description.ClassDescription;
-import com.buschmais.testbeans.core.description.Description;
-import com.buschmais.testbeans.core.description.MethodDescription;
+import com.buschmais.testbeans.framework.Container;
+import com.buschmais.testbeans.framework.description.ClassDescription;
+import com.buschmais.testbeans.framework.description.Description;
+import com.buschmais.testbeans.framework.description.MethodDescription;
 import com.buschmais.testbeans.test.common.bean.event.Observer;
 
 /**

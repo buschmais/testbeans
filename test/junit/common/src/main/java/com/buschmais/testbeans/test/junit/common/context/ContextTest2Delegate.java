@@ -16,7 +16,7 @@
  */
 package com.buschmais.testbeans.test.junit.common.context;
 
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
 
 /**
  * Concrete implementation of a test checking correct scoping of beans.

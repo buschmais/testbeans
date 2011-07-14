@@ -20,7 +20,7 @@ import javax.enterprise.context.ContextNotActiveException;
 
 import org.junit.Assert;
 
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.test.common.bean.context.AbstractScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.ClassScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;

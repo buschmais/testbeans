@@ -23,7 +23,7 @@ import org.jboss.weld.environment.se.WeldContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
 
 /**
  * Controls the life cycle of Weld (http://seamframework.org/Weld) providing

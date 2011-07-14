@@ -21,10 +21,10 @@ import java.util.Queue;
 
 import javax.enterprise.event.Observes;
 
-import com.buschmais.testbeans.core.After;
-import com.buschmais.testbeans.core.Before;
-import com.buschmais.testbeans.core.ClassScoped;
-import com.buschmais.testbeans.core.description.Description;
+import com.buschmais.testbeans.framework.After;
+import com.buschmais.testbeans.framework.Before;
+import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.description.Description;
 
 /**
  * A bean observing events.

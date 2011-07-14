@@ -14,24 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.core.context;
+package com.buschmais.testbeans.framework.context;
 
 import java.lang.annotation.Annotation;
 
-import com.buschmais.testbeans.core.SuiteScoped;
+import com.buschmais.testbeans.framework.ClassScoped;
 
 /**
- * The suite context.
+ * A class context.
+ * <p>
+ * </p>
  * 
  * @author dirk.mahler
  */
-public class SuiteContext extends AbstractTestContext {
+public class ClassContext extends AbstractTestContext {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Class<? extends Annotation> getScope() {
-		return SuiteScoped.class;
+		return ClassScoped.class;
 	}
 }

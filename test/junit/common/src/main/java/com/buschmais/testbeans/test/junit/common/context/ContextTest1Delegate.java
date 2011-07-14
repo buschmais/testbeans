@@ -16,7 +16,7 @@
  */
 package com.buschmais.testbeans.test.junit.common.context;
 
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.test.common.bean.context.ClassScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.SuiteScopedBean;

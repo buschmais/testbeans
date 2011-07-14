@@ -20,7 +20,7 @@ import javax.enterprise.util.AnnotationLiteral;
 
 import org.junit.Assert;
 
-import com.buschmais.testbeans.core.Container;
+import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.test.common.bean.producer.Managed;
 import com.buschmais.testbeans.test.common.bean.producer.Resource;
 import com.buschmais.testbeans.test.common.bean.producer.ResourceProducer;
