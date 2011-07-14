@@ -23,9 +23,9 @@ import javax.enterprise.event.Observes;
 
 import org.junit.runner.Description;
 
-import com.buschmais.testbeans.junit.extension.After;
-import com.buschmais.testbeans.junit.extension.Before;
-import com.buschmais.testbeans.junit.extension.ClassScoped;
+import com.buschmais.testbeans.core.After;
+import com.buschmais.testbeans.core.Before;
+import com.buschmais.testbeans.core.ClassScoped;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 
 /**

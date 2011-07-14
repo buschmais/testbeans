@@ -22,6 +22,12 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import com.buschmais.testbeans.core.After;
+import com.buschmais.testbeans.core.Before;
+import com.buschmais.testbeans.core.ClassScoped;
+import com.buschmais.testbeans.core.MethodScoped;
+import com.buschmais.testbeans.core.WeldManager;
+
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
  * JUnit-related contexts, see {@link ClassScoped} and {@link MethodScoped}.

@@ -16,7 +16,7 @@
  */
 package com.buschmais.testbeans.junit.test.bean.context;
 
-import com.buschmais.testbeans.junit.extension.SuiteScoped;
+import com.buschmais.testbeans.core.SuiteScoped;
 
 /**
  * A suite scoped bean.

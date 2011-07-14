@@ -22,6 +22,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
+import com.buschmais.testbeans.core.SuiteScoped;
+import com.buschmais.testbeans.core.WeldManager;
+
 /**
  * A {@link Runner} which derives from {@link Suite} and controls the lifecycle
  * of the suite context, see {@link SuiteScoped}.

@@ -29,7 +29,6 @@ limitations under the License.
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>
 			<artifactId>testbeans.junit.extension</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

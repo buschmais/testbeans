@@ -20,7 +20,7 @@ import org.jboss.weld.environment.se.WeldContainer;
 import org.junit.ClassRule;
 import org.junit.Rule;
 
-import com.buschmais.testbeans.junit.extension.WeldManager;
+import com.buschmais.testbeans.core.WeldManager;
 import com.buschmais.testbeans.junit.extension.WeldRule;
 
 /**

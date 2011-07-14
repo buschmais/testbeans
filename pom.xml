@@ -50,9 +50,11 @@ limitations under the License.
 		</developer>
 	</developers>
 
-	<modules>
-		<module>junit</module>
-	</modules>
+	<properties>
+		<junit.version>4.9b3</junit.version>
+		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
+		<org.slf4j.version>1.5.10</org.slf4j.version>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -100,5 +102,40 @@ limitations under the License.
 			</plugin>
 		</plugins>
 	</build>
+	
+	<dependencyManagement>		
+		<dependencies>
+			<dependency>
+				<groupId>com.buschmais.testbeans</groupId>
+				<artifactId>testbeans.core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.buschmais.testbeans</groupId>
+				<artifactId>testbeans.junit.extension</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.weld.se</groupId>
+				<artifactId>weld-se</artifactId>
+				<version>${org.jboss.weld.se.version}</version>
+			</dependency>
+			<dependency>
+				<artifactId>slf4j-api</artifactId>
+				<groupId>org.slf4j</groupId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>core</module>
+		<module>junit</module>
+	</modules>
 
 </project>

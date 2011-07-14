@@ -23,8 +23,8 @@ import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 
-import com.buschmais.testbeans.junit.extension.ClassScoped;
-import com.buschmais.testbeans.junit.extension.MethodScoped;
+import com.buschmais.testbeans.core.ClassScoped;
+import com.buschmais.testbeans.core.MethodScoped;
 
 /**
  * Produces and disposes {@link Resource}s.

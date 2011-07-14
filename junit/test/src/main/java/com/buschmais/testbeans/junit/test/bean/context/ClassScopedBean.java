@@ -16,7 +16,7 @@
  */
 package com.buschmais.testbeans.junit.test.bean.context;
 
-import com.buschmais.testbeans.junit.extension.ClassScoped;
+import com.buschmais.testbeans.core.ClassScoped;
 
 /**
  * A class scoped bean.
