@@ -28,18 +28,6 @@ import com.buschmais.testbeans.framework.SuiteScoped;
 /**
  * Abstract {@link Runner} which derives from {@link Suite} and controls the
  * lifecycle of the suite context, see {@link SuiteScoped}.
- * <p>
- * This runner may be used if a suite is defined using {@link SuiteClasses}:
- * 
- * <pre>
- * &#064;SuiteClasses({MyTest1.class, MyTest2.class})
- * &#064;RunWith(WeldSuite.class)
- * public class MySuiteTest() {
- * ...
- * }
- * </pre>
- * 
- * </p>
  * 
  * @author dirk.mahler
  */

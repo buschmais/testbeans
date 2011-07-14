@@ -31,17 +31,9 @@ import com.buschmais.testbeans.framework.description.MethodDescription;
  * cycle of JUnit-related contexts, see {@link ClassScoped} and
  * {@link MethodScoped}.
  * 
- * Usage:
- * 
- * <pre>
- * &#064;Rule
- * &#064;ClassRule
- * public static WeldRule weldRule = new WeldRule();
- * </pre>
- * 
  * @author dirk.mahler
  */
-public abstract class AbstractRule implements TestRule {
+public abstract class AbstractCombinedRule implements TestRule {
 
 	/**
 	 * {@inheritDoc}

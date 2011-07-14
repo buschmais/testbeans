@@ -22,7 +22,7 @@ import com.buschmais.testbeans.container.owbse.OpenWebBeansSEContainer;
 import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.MethodScoped;
-import com.buschmais.testbeans.junit.common.AbstractRule;
+import com.buschmais.testbeans.junit.common.AbstractCombinedRule;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
@@ -33,12 +33,12 @@ import com.buschmais.testbeans.junit.common.AbstractRule;
  * <pre>
  * &#064;Rule
  * &#064;ClassRule
- * public static WeldRule weldRule = new WeldRule();
+ * public static TestRule owbRule = new OpenWebBeansSERule();
  * </pre>
  * 
  * @author dirk.mahler
  */
-public class OpenWebBeansSERule extends AbstractRule {
+public class OpenWebBeansSERule extends AbstractCombinedRule {
 
 	/**
 	 * {@inheritDoc}

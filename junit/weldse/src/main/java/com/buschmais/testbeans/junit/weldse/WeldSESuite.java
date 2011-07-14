@@ -17,7 +17,6 @@
 package com.buschmais.testbeans.junit.weldse;
 
 import org.junit.runner.Runner;
-import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
@@ -35,7 +34,7 @@ import com.buschmais.testbeans.junit.common.AbstractSuite;
  * 
  * <pre>
  * &#064;SuiteClasses({MyTest1.class, MyTest2.class})
- * &#064;RunWith(WeldSuite.class)
+ * &#064;RunWith(WeldSESuite.class)
  * public class MySuiteTest() {
  * ...
  * }
