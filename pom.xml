@@ -24,7 +24,7 @@ limitations under the License.
 	<packaging>pom</packaging>
 	<url>https://github.com/buschmais/testbeans</url>
 	<description>
-       TestBeans aims to integrate JUnit 4.9 and later with Contexts and Dependency Injection (JSR-299) using the reference implementation Weld.
+       TestBeans integrates JUnit 4.7 and later with Contexts and Dependency Injection (JSR-299).
     </description>
 
 	<organization>
