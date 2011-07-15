@@ -27,7 +27,7 @@ import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.SuiteScopedBean;
 
 /**
- * Abstract base class for tests checking correct scoping of the beans.
+ * Delegate class for tests checking correct scoping of the beans.
  * 
  * @author dirk.mahler
  */

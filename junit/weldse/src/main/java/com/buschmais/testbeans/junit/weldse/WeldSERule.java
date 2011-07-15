@@ -22,7 +22,7 @@ import com.buschmais.testbeans.container.weldse.WeldSEContainer;
 import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.Container;
 import com.buschmais.testbeans.framework.MethodScoped;
-import com.buschmais.testbeans.junit.common.AbstractCombinedRule;
+import com.buschmais.testbeans.junit.common.AbstractTestRule;
 
 /**
  * Implementation of a JUnit {@link TestRule} which controls the life cycle of
@@ -38,7 +38,7 @@ import com.buschmais.testbeans.junit.common.AbstractCombinedRule;
  * 
  * @author dirk.mahler
  */
-public class WeldSERule extends AbstractCombinedRule {
+public class WeldSERule extends AbstractTestRule {
 
 	/**
 	 * {@inheritDoc}

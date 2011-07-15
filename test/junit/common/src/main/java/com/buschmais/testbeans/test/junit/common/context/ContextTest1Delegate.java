@@ -22,7 +22,7 @@ import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;
 import com.buschmais.testbeans.test.common.bean.context.SuiteScopedBean;
 
 /**
- * Concrete implementation of a test checking correct scoping of beans.
+ * Delegate implementation of a test checking correct scoping of beans.
  * 
  * @author dirk.mahler
  */

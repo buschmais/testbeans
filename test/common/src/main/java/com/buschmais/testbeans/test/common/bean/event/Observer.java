@@ -23,7 +23,7 @@ import javax.enterprise.event.Observes;
 
 import com.buschmais.testbeans.framework.After;
 import com.buschmais.testbeans.framework.Before;
-import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.SuiteScoped;
 import com.buschmais.testbeans.framework.description.Description;
 
 /**
@@ -31,7 +31,7 @@ import com.buschmais.testbeans.framework.description.Description;
  * 
  * @author dirk.mahler
  */
-@ClassScoped
+@SuiteScoped
 public class Observer {
 
 	private Queue<Description> beforeEvents = new LinkedList<Description>();
