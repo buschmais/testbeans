@@ -28,7 +28,7 @@ limitations under the License.
 	<dependencies>
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>
-			<artifactId>testbeans.junit.owbse</artifactId>
+			<artifactId>testbeans.container.owbse</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>

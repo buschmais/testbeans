@@ -51,10 +51,10 @@ limitations under the License.
 	</developers>
 
 	<properties>
-		<junit.version>4.9b3</junit.version>
 		<org.apache.openwebbeans.version>1.1.0</org.apache.openwebbeans.version>
 		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
+		<org.testng.version>6.1.1</org.testng.version>
 	</properties>
 
 	<repositories>
@@ -123,19 +123,14 @@ limitations under the License.
 			</dependency>
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
-				<artifactId>testbeans.junit.common</artifactId>
+				<artifactId>testbeans.junit</artifactId>
 				<version>${project.version}</version>
 			</dependency>			
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
-				<artifactId>testbeans.junit.owbse</artifactId>
+				<artifactId>testbeans.testng</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.buschmais.testbeans</groupId>
-				<artifactId>testbeans.junit.weldse</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
 				<artifactId>testbeans.test.common</artifactId>
@@ -147,15 +142,15 @@ limitations under the License.
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.buschmais.testbeans</groupId>
+				<artifactId>testbeans.test.testng.common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>javax.enterprise</groupId>
 				<artifactId>cdi-api</artifactId>
 				<scope>provided</scope>
 				<version>1.0</version>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.openwebbeans</groupId>

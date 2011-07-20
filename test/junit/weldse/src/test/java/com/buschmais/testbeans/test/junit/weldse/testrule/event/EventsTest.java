@@ -19,15 +19,18 @@ package com.buschmais.testbeans.test.junit.weldse.testrule.event;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.buschmais.testbeans.junit.weldse.WeldSESuite;
+import com.buschmais.testbeans.container.weldse.WeldSE;
+import com.buschmais.testbeans.framework.container.CdiContainer;
+import com.buschmais.testbeans.junit.common.TestBeansSuite;
 
 /**
- * Defines a suite using {@link WeldSESuite}.
+ * Defines a suite using {@link OwbSESuite}.
  * 
  * @author dirk.mahler
  */
-@SuiteClasses(Events.class)
-@RunWith(WeldSESuite.class)
+@SuiteClasses(com.buschmais.testbeans.test.junit.common.testrule.event.EventsTest.class)
+@CdiContainer(WeldSE.class)
+@RunWith(TestBeansSuite.class)
 public class EventsTest {
 
 }

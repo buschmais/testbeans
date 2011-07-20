@@ -19,14 +19,17 @@ package com.buschmais.testbeans.test.junit.owbse.testrule.producer;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.buschmais.testbeans.junit.owbse.OwbSESuite;
+import com.buschmais.testbeans.container.owbse.OpenWebBeansSE;
+import com.buschmais.testbeans.framework.container.CdiContainer;
+import com.buschmais.testbeans.junit.common.TestBeansSuite;
 
 /**
  * Defines a suite using {@link OwbSESuite}.
  * 
  * @author dirk.mahler
  */
-@SuiteClasses(ProducerDisposer.class)
-@RunWith(OwbSESuite.class)
+@SuiteClasses(com.buschmais.testbeans.test.junit.common.testrule.producer.ProducerDisposerTest.class)
+@CdiContainer(OpenWebBeansSE.class)
+@RunWith(TestBeansSuite.class)
 public class ProducerDisposerTest {
 }
