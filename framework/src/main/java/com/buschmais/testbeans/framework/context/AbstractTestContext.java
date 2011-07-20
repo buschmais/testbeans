@@ -83,7 +83,9 @@ public abstract class AbstractTestContext implements TestContext {
 	 */
 	private Map<Contextual<?>, ContextualInstance<?>> contextualInstances = null;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.buschmais.testbeans.core.context.TestContext#activate()
 	 */
 	@Override
@@ -94,7 +96,9 @@ public abstract class AbstractTestContext implements TestContext {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.buschmais.testbeans.core.context.TestContext#deactivate()
 	 */
 	@Override
@@ -117,17 +121,21 @@ public abstract class AbstractTestContext implements TestContext {
 	@Override
 	public <T> T get(Contextual<T> contextual,
 			CreationalContext<T> creationalContext) {
-		ContextualInstance<T> contextualInstance;
-		if (contextualInstances.containsKey(contextual)) {
-			contextualInstance = (ContextualInstance<T>) contextualInstances
-					.get(contextual);
+		if (contextualInstances == null) {
+			return null;
 		} else {
-			T instance = contextual.create(creationalContext);
-			contextualInstance = new ContextualInstance<T>(contextual,
-					creationalContext, instance);
-			contextualInstances.put(contextual, contextualInstance);
+			ContextualInstance<T> contextualInstance;
+			if (contextualInstances.containsKey(contextual)) {
+				contextualInstance = (ContextualInstance<T>) contextualInstances
+						.get(contextual);
+			} else {
+				T instance = contextual.create(creationalContext);
+				contextualInstance = new ContextualInstance<T>(contextual,
+						creationalContext, instance);
+				contextualInstances.put(contextual, contextualInstance);
+			}
+			return contextualInstance.getInstance();
 		}
-		return contextualInstance.getInstance();
 	}
 
 	/**
@@ -135,11 +143,13 @@ public abstract class AbstractTestContext implements TestContext {
 	 */
 	@Override
 	public <T> T get(Contextual<T> contextual) {
-		@SuppressWarnings("unchecked")
-		ContextualInstance<T> contextualInstance = (ContextualInstance<T>) contextualInstances
-				.get(contextual);
-		if (contextualInstance != null) {
-			return contextualInstance.getInstance();
+		if (contextualInstances != null) {
+			@SuppressWarnings("unchecked")
+			ContextualInstance<T> contextualInstance = (ContextualInstance<T>) contextualInstances
+					.get(contextual);
+			if (contextualInstance != null) {
+				return contextualInstance.getInstance();
+			}
 		}
 		return null;
 	}

@@ -29,6 +29,7 @@ limitations under the License.
 
 	<modules>
 		<module>owbse</module>
+		<module>resin</module>
 		<module>weldse</module>
 	</modules>
 

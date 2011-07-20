@@ -29,6 +29,7 @@ import javax.enterprise.util.AnnotationLiteral;
 import com.buschmais.testbeans.framework.After;
 import com.buschmais.testbeans.framework.Before;
 import com.buschmais.testbeans.framework.description.ClassDescription;
+import com.buschmais.testbeans.framework.description.Description;
 import com.buschmais.testbeans.framework.description.MethodDescription;
 import com.buschmais.testbeans.framework.description.SuiteDescription;
 
@@ -112,9 +113,8 @@ public class TestContextManager {
 	@SuppressWarnings("serial")
 	public void activateSuiteContext(SuiteDescription suiteDescription) {
 		this.suiteContext.activate();
-		beanManager.fireEvent(suiteDescription,
-				new AnnotationLiteral<Before>() {
-				});
+		fireEvent(suiteDescription, new AnnotationLiteral<Before>() {
+		});
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("serial")
 	public void deactivateSuiteContext(SuiteDescription suiteDescription) {
-		beanManager.fireEvent(suiteDescription, new AnnotationLiteral<After>() {
+		fireEvent(suiteDescription, new AnnotationLiteral<After>() {
 		});
 		this.suiteContext.deactivate();
 	}
@@ -133,9 +133,8 @@ public class TestContextManager {
 	@SuppressWarnings("serial")
 	public void activateClassContext(ClassDescription classDescription) {
 		this.classContext.activate();
-		beanManager.fireEvent(classDescription,
-				new AnnotationLiteral<Before>() {
-				});
+		fireEvent(classDescription, new AnnotationLiteral<Before>() {
+		});
 	}
 
 	/**
@@ -143,7 +142,7 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("serial")
 	public void deactivateClassContext(ClassDescription classDescription) {
-		beanManager.fireEvent(classDescription, new AnnotationLiteral<After>() {
+		fireEvent(classDescription, new AnnotationLiteral<After>() {
 		});
 		this.classContext.deactivate();
 	}
@@ -154,9 +153,8 @@ public class TestContextManager {
 	@SuppressWarnings("serial")
 	public void activateMethodContext(MethodDescription methodDescription) {
 		this.methodContext.activate();
-		beanManager.fireEvent(methodDescription,
-				new AnnotationLiteral<Before>() {
-				});
+		fireEvent(methodDescription, new AnnotationLiteral<Before>() {
+		});
 	}
 
 	/**
@@ -164,9 +162,8 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("serial")
 	public void deactivateMethodContext(MethodDescription methodDescription) {
-		beanManager.fireEvent(methodDescription,
-				new AnnotationLiteral<After>() {
-				});
+		fireEvent(methodDescription, new AnnotationLiteral<After>() {
+		});
 		this.methodContext.deactivate();
 	}
 
@@ -211,5 +208,20 @@ public class TestContextManager {
 		Bean<?> bean = beanManager.getBeans(type, qualifier).iterator().next();
 		return (T) beanManager.getReference(bean, type,
 				beanManager.createCreationalContext(bean));
+	}
+
+	/**
+	 * Fires an event using the provided description and qualifier.
+	 * 
+	 * @param description
+	 *            The {@link Description}.
+	 * @param qualifier
+	 *            The qualifier.
+	 */
+	private void fireEvent(Description description,
+			AnnotationLiteral<? extends Annotation> qualifier) {
+		if (beanManager != null) {
+			beanManager.fireEvent(description, qualifier);
+		}
 	}
 }

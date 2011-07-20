@@ -51,6 +51,7 @@ limitations under the License.
 	</developers>
 
 	<properties>
+		<com.caucho.version>4.0.20</com.caucho.version>
 		<org.apache.openwebbeans.version>1.1.0</org.apache.openwebbeans.version>
 		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
@@ -72,6 +73,7 @@ limitations under the License.
 			<url>http://oss.sonatype.org/content/repositories/junit-071</url>
 		</repository>
 
+		<!-- Weld -->
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Maven Repository Group</name>
@@ -85,6 +87,13 @@ limitations under the License.
 				<enabled>true</enabled>
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
+		</repository>
+
+		<!-- Resin -->
+		<repository>
+			<id>caucho-releases</id>
+			<name>Caucho Releases</name>
+			<url>http://caucho.com/m2</url>
 		</repository>
 	</repositories>
 
@@ -118,6 +127,11 @@ limitations under the License.
 			</dependency>
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
+				<artifactId>testbeans.container.resin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.buschmais.testbeans</groupId>
 				<artifactId>testbeans.container.weldse</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -145,6 +159,11 @@ limitations under the License.
 				<groupId>com.buschmais.testbeans</groupId>
 				<artifactId>testbeans.test.testng.common</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.caucho</groupId>
+				<artifactId>resin</artifactId>
+				<version>${com.caucho.version}</version>	
 			</dependency>
 			<dependency>
 				<groupId>javax.enterprise</groupId>

@@ -32,10 +32,6 @@ limitations under the License.
 		</dependency>
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>
-			<artifactId>testbeans.test.common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.buschmais.testbeans</groupId>
 			<artifactId>testbeans.test.junit.common</artifactId>
 		</dependency>
 	</dependencies>

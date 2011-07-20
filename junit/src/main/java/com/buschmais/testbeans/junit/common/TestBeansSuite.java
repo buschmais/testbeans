@@ -38,24 +38,45 @@ public class TestBeansSuite extends Suite {
 
 	private CdiContainer container = null;
 
+	/**
+	 * Constructs the suite.
+	 * 
+	 * @param builder
+	 *            The builder.
+	 * @param klass
+	 *            The class.
+	 * @throws InitializationError
+	 */
 	public TestBeansSuite(Class<?> klass, RunnerBuilder builder)
 			throws InitializationError {
 		super(klass, builder);
 		container = klass.getAnnotation(CdiContainer.class);
 	}
 
+	/**
+	 * Constructs the suite.
+	 * 
+	 * @param builder
+	 *            The builder.
+	 * @param classes
+	 *            The classes.
+	 * @throws InitializationError
+	 */
 	public TestBeansSuite(RunnerBuilder builder, Class<?>[] classes)
 			throws InitializationError {
 		super(builder, classes);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void run(RunNotifier notifier) {
 		SuiteDescription suiteDescription = new SuiteDescription();
-		CdiContainerAdapter containerManager = this.getContainerManager();
+		CdiContainerAdapter containerAdapter = this.getContainerAdapter();
 		try {
-			if (containerManager != null) {
-				containerManager.start();
+			if (containerAdapter != null) {
+				containerAdapter.start();
 			}
 			TestContextManager.getInstance().activateSuiteContext(
 					suiteDescription);
@@ -63,13 +84,20 @@ public class TestBeansSuite extends Suite {
 		} finally {
 			TestContextManager.getInstance().deactivateSuiteContext(
 					suiteDescription);
-			if (containerManager != null) {
-				containerManager.stop();
+			if (containerAdapter != null) {
+				containerAdapter.stop();
 			}
 		}
 	}
 
-	private CdiContainerAdapter getContainerManager() {
+	/**
+	 * Creates an instance of {@link CdiContainerAdapter} specified by the
+	 * argument of the annotation {@link CdiContainer}.
+	 * 
+	 * @return The instance of the {@link CdiContainerAdapter} or
+	 *         <code>null</code>.
+	 */
+	private CdiContainerAdapter getContainerAdapter() {
 		CdiContainerAdapter containerManager = null;
 		if (container != null) {
 			Class<? extends CdiContainerAdapter> value = container.value();
