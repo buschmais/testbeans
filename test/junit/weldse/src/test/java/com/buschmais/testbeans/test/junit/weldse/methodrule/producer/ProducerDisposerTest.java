@@ -24,7 +24,7 @@ import com.buschmais.testbeans.framework.container.CdiContainer;
 import com.buschmais.testbeans.junit.common.TestBeansSuite;
 
 /**
- * Defines a suite using {@link OwbSESuite}.
+ * Defines a suite using {@link TestBeansSuite}.
  * 
  * @author dirk.mahler
  */

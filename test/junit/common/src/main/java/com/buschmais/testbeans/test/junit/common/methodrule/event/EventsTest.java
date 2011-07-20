@@ -24,12 +24,12 @@ import org.junit.Test;
 
 import com.buschmais.testbeans.framework.context.TestContextManager;
 import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.junit.common.TestBeansRule;
+import com.buschmais.testbeans.junit.common.TestBeansMethodRule;
 import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTest;
 
 /**
- * Test implementation checking the events fired by the {@link TestBeansRule}.
+ * Test implementation checking the events fired by the {@link TestBeansMethodRule}.
  * <p>
  * Note: the event fired after a test class has been finished is currently not
  * tested.
@@ -37,6 +37,7 @@ import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTe
  * 
  * @author dirk.mahler
  */
+@SuppressWarnings("deprecation")
 public class EventsTest extends AbstractMethodRuleTest {
 
 	@BeforeClass
