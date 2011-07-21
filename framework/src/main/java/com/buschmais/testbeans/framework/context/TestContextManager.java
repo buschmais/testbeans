@@ -26,6 +26,9 @@ import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.util.AnnotationLiteral;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.buschmais.testbeans.framework.After;
 import com.buschmais.testbeans.framework.Before;
 import com.buschmais.testbeans.framework.description.ClassDescription;
@@ -40,6 +43,9 @@ import com.buschmais.testbeans.framework.description.SuiteDescription;
  * @author dirk.mahler
  */
 public class TestContextManager {
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(TestContextManager.class);
 
 	private static final TestContextManager instance = new TestContextManager();
 
@@ -110,61 +116,43 @@ public class TestContextManager {
 	/**
 	 * Activates the suite context;
 	 */
-	@SuppressWarnings("serial")
 	public void activateSuiteContext(SuiteDescription suiteDescription) {
-		this.suiteContext.activate();
-		fireEvent(suiteDescription, new AnnotationLiteral<Before>() {
-		});
+		activate(suiteContext, suiteDescription);
 	}
 
 	/**
 	 * Deactivates the suite context;
 	 */
-	@SuppressWarnings("serial")
 	public void deactivateSuiteContext(SuiteDescription suiteDescription) {
-		fireEvent(suiteDescription, new AnnotationLiteral<After>() {
-		});
-		this.suiteContext.deactivate();
+		deactivate(suiteContext, suiteDescription);
 	}
 
 	/**
 	 * Activates the class context;
 	 */
-	@SuppressWarnings("serial")
 	public void activateClassContext(ClassDescription classDescription) {
-		this.classContext.activate();
-		fireEvent(classDescription, new AnnotationLiteral<Before>() {
-		});
+		activate(classContext, classDescription);
 	}
 
 	/**
 	 * Deactivates the class context;
 	 */
-	@SuppressWarnings("serial")
 	public void deactivateClassContext(ClassDescription classDescription) {
-		fireEvent(classDescription, new AnnotationLiteral<After>() {
-		});
-		this.classContext.deactivate();
+		deactivate(classContext, classDescription);
 	}
 
 	/**
 	 * Activates the method context;
 	 */
-	@SuppressWarnings("serial")
 	public void activateMethodContext(MethodDescription methodDescription) {
-		this.methodContext.activate();
-		fireEvent(methodDescription, new AnnotationLiteral<Before>() {
-		});
+		activate(methodContext, methodDescription);
 	}
 
 	/**
 	 * Deactivates the method context;
 	 */
-	@SuppressWarnings("serial")
 	public void deactivateMethodContext(MethodDescription methodDescription) {
-		fireEvent(methodDescription, new AnnotationLiteral<After>() {
-		});
-		this.methodContext.deactivate();
+		deactivate(methodContext, methodDescription);
 	}
 
 	/**
@@ -208,6 +196,45 @@ public class TestContextManager {
 		Bean<?> bean = beanManager.getBeans(type, qualifier).iterator().next();
 		return (T) beanManager.getReference(bean, type,
 				beanManager.createCreationalContext(bean));
+	}
+
+	/**
+	 * Activates a given {@link TestContext}.
+	 * 
+	 * @param testContext
+	 *            The {@link TestContext}.
+	 * @param description
+	 *            The {@link Description}.
+	 */
+	@SuppressWarnings("serial")
+	private void activate(TestContext testContext, Description description) {
+		if (!testContext.isActive()) {
+			testContext.activate();
+			fireEvent(description, new AnnotationLiteral<Before>() {
+			});
+		} else {
+			LOGGER.warn("Cannot activate " + testContext + ", it is active.");
+		}
+	}
+
+	/**
+	 * Deactivates a given {@link TestContext}.
+	 * 
+	 * @param testContext
+	 *            The {@link TestContext}.
+	 * @param description
+	 *            The {@link Description}.
+	 */
+	@SuppressWarnings("serial")
+	private void deactivate(TestContext testContext, Description description) {
+		if (testContext.isActive()) {
+			fireEvent(description, new AnnotationLiteral<After>() {
+			});
+			testContext.deactivate();
+		} else {
+			LOGGER.warn("Cannot deactivate " + testContext
+					+ ", it is not active.");
+		}
 	}
 
 	/**
