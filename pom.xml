@@ -53,6 +53,7 @@ limitations under the License.
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<com.caucho.version>4.0.20</com.caucho.version>
+		<javax.enterprise.version>1.0</javax.enterprise.version>
 		<org.apache.openwebbeans.version>1.1.0</org.apache.openwebbeans.version>
 		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
@@ -170,7 +171,7 @@ limitations under the License.
 				<groupId>javax.enterprise</groupId>
 				<artifactId>cdi-api</artifactId>
 				<scope>provided</scope>
-				<version>1.0</version>
+				<version>${javax.enterprise.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.openwebbeans</groupId>

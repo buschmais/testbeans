@@ -19,6 +19,7 @@ package com.buschmais.testbeans.framework.context;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.BeforeShutdown;
 import javax.enterprise.inject.spi.Extension;
 
 /**
@@ -30,16 +31,24 @@ import javax.enterprise.inject.spi.Extension;
 public class TestContextExtension implements Extension {
 
 	/**
-	 * {@inheritDoc}
+	 * Observes the {@link AfterBeanDiscovery} event of the CDI container.
 	 */
 	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event,
 			BeanManager beanManager) {
 		TestContextManager testContextManager = TestContextManager
 				.getInstance();
-		testContextManager.setBeanManager(beanManager);
 		for (TestContext testContext : testContextManager.getTestContexts()) {
 			event.addContext(testContext);
 		}
+		testContextManager.start(beanManager);
 	}
 
+	/**
+	 * Observes the {@link BeforeShutdown} event of the CDI container.
+	 */
+	public void beforeShutdown(@Observes BeforeShutdown event) {
+		TestContextManager testContextManager = TestContextManager
+				.getInstance();
+		testContextManager.stop();
+	}
 }

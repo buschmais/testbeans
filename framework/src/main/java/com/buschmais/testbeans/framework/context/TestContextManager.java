@@ -104,13 +104,22 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Set the {@link BeanManager}.
+	 * Starts the {@link TestContextManager}.
 	 * 
 	 * @param beanManager
 	 *            The {@link BeanManager}.
 	 */
-	public void setBeanManager(BeanManager beanManager) {
+	public void start(BeanManager beanManager) {
+		assertState(false);
 		this.beanManager = beanManager;
+	}
+
+	/**
+	 * Stops the {@link TestContextManager}.
+	 */
+	public void stop() {
+		assertState(true);
+		this.beanManager = null;
 	}
 
 	/**
@@ -193,9 +202,39 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T get(Type type, Annotation... qualifier) {
+		assertState(true);
 		Bean<?> bean = beanManager.getBeans(type, qualifier).iterator().next();
 		return (T) beanManager.getReference(bean, type,
 				beanManager.createCreationalContext(bean));
+	}
+
+	/**
+	 * Fires an event using the provided value and qualifier.
+	 * 
+	 * @param value
+	 *            The value.
+	 * @param qualifier
+	 *            The qualifier.
+	 */
+	public void fireEvent(Object value,
+			AnnotationLiteral<? extends Annotation> qualifier) {
+		assertState(true);
+		beanManager.fireEvent(value, qualifier);
+	}
+
+	/**
+	 * Checks wether the {@link TestContextManager} is started/stopped and logs
+	 * a warning.
+	 * 
+	 * @param <code>true</code>, if the {@link TestContextManager} is assumed to
+	 *        be started.
+	 */
+	private void assertState(boolean started) {
+		if ((started && this.beanManager == null)
+				|| (!started && this.beanManager != null)) {
+			LOGGER.warn(TestContextManager.class.getSimpleName() + " is not "
+					+ (started ? "started" : "stopped"));
+		}
 	}
 
 	/**
@@ -208,6 +247,7 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("serial")
 	private void activate(TestContext testContext, Description description) {
+		assertState(true);
 		if (!testContext.isActive()) {
 			testContext.activate();
 			fireEvent(description, new AnnotationLiteral<Before>() {
@@ -227,6 +267,7 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("serial")
 	private void deactivate(TestContext testContext, Description description) {
+		assertState(true);
 		if (testContext.isActive()) {
 			fireEvent(description, new AnnotationLiteral<After>() {
 			});
@@ -234,21 +275,6 @@ public class TestContextManager {
 		} else {
 			LOGGER.warn("Cannot deactivate " + testContext
 					+ ", it is not active.");
-		}
-	}
-
-	/**
-	 * Fires an event using the provided description and qualifier.
-	 * 
-	 * @param description
-	 *            The {@link Description}.
-	 * @param qualifier
-	 *            The qualifier.
-	 */
-	private void fireEvent(Description description,
-			AnnotationLiteral<? extends Annotation> qualifier) {
-		if (beanManager != null) {
-			beanManager.fireEvent(description, qualifier);
 		}
 	}
 }
