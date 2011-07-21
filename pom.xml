@@ -51,6 +51,7 @@ limitations under the License.
 	</developers>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<com.caucho.version>4.0.20</com.caucho.version>
 		<org.apache.openwebbeans.version>1.1.0</org.apache.openwebbeans.version>
 		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
