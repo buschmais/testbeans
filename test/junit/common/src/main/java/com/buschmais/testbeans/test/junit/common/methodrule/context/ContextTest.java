@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
 import com.buschmais.testbeans.framework.description.ClassDescription;
 import com.buschmais.testbeans.test.junit.common.delegate.context.ContextTestDelegate;
@@ -36,7 +37,7 @@ public class ContextTest extends AbstractMethodRuleTest {
 
 	@BeforeClass
 	public static void beforeAbstractClass() {
-		TestContextManager.getInstance().activateClassContext(
+		TestContextManager.getInstance().activate(ClassScoped.class,
 				new ClassDescription(ContextTest.class.getName()));
 		ContextTestDelegate.beforeAbstractClass();
 	}
@@ -59,7 +60,7 @@ public class ContextTest extends AbstractMethodRuleTest {
 	@AfterClass
 	public static void afterAbstractClass() {
 		ContextTestDelegate.afterAbstractClass();
-		TestContextManager.getInstance().deactivateClassContext(
+		TestContextManager.getInstance().deactivate(ClassScoped.class,
 				new ClassDescription(ContextTest.class.getName()));
 	}
 

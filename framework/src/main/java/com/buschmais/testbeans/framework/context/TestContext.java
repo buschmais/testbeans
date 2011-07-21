@@ -16,26 +16,187 @@
  */
 package com.buschmais.testbeans.framework.context;
 
+import java.lang.annotation.Annotation;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.enterprise.context.spi.Context;
+import javax.enterprise.context.spi.Contextual;
+import javax.enterprise.context.spi.CreationalContext;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Interface describing a test context.
+ * Implementation of a test context.
  * <p>
- * Adds methods for activation and deactivation of a context.
+ * Despite the contract required by {@link Context} methods are provided for
+ * activation and deactivation of a context.
  * </p>
  * 
  * @author dirk.mahler
  */
-public interface TestContext extends Context {
+public class TestContext implements Context {
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(TestContext.class);
 
 	/**
-	 * Activates the context.
+	 * Represents a contextual instance.
+	 * 
+	 * @author dirk.mahler
+	 * 
+	 * @param <T>
+	 *            The type of the contextual instance.
 	 */
-	public void activate();
+	private static class ContextualInstance<T> {
+
+		private Contextual<T> contextual;
+
+		private CreationalContext<T> creationalContext;
+
+		private T instance;
+
+		private ContextualInstance(Contextual<T> contextual,
+				CreationalContext<T> creationalContext, T instance) {
+			this.contextual = contextual;
+			this.creationalContext = creationalContext;
+			this.instance = instance;
+		}
+
+		public Contextual<T> getContextual() {
+			return contextual;
+		}
+
+		public CreationalContext<T> getCreationalContext() {
+			return creationalContext;
+		}
+
+		public T getInstance() {
+			return instance;
+		}
+
+	}
 
 	/**
-	 * Deactivates the context and destroys all contextual instances.
+	 * A map of contextual instances which this context holds. Is set to
+	 * <code>null</code> if the context is not active.
 	 */
-	public void deactivate();
+	private Map<Contextual<?>, ContextualInstance<?>> contextualInstances = null;
+
+	/**
+	 * The scope which is bound to this {@link Context}.
+	 */
+	private Class<? extends Annotation> scope;
+
+	/**
+	 * Constructs the {@link TestContext}.
+	 * 
+	 * @param scope
+	 *            The scope which is bound to this {@link Context}.
+	 */
+	public TestContext(Class<? extends Annotation> scope) {
+		this.scope = scope;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.buschmais.testbeans.core.context.TestContext#activate()
+	 */
+	public void activate() {
+		if (contextualInstances == null) {
+			LOGGER.debug("Activating " + this.getClass().getSimpleName() + ".");
+			contextualInstances = new HashMap<Contextual<?>, ContextualInstance<?>>();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.buschmais.testbeans.core.context.TestContext#deactivate()
+	 */
+	public void deactivate() {
+		if (contextualInstances != null) {
+			LOGGER.debug("Deactivating " + this.getClass().getSimpleName()
+					+ ".");
+			for (ContextualInstance<?> contextualInstance : contextualInstances
+					.values()) {
+				destroy(contextualInstance);
+			}
+			contextualInstances = null;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T get(Contextual<T> contextual,
+			CreationalContext<T> creationalContext) {
+		if (contextualInstances == null) {
+			return null;
+		} else {
+			ContextualInstance<T> contextualInstance;
+			if (contextualInstances.containsKey(contextual)) {
+				contextualInstance = (ContextualInstance<T>) contextualInstances
+						.get(contextual);
+			} else {
+				T instance = contextual.create(creationalContext);
+				contextualInstance = new ContextualInstance<T>(contextual,
+						creationalContext, instance);
+				contextualInstances.put(contextual, contextualInstance);
+			}
+			return contextualInstance.getInstance();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public <T> T get(Contextual<T> contextual) {
+		if (contextualInstances != null) {
+			@SuppressWarnings("unchecked")
+			ContextualInstance<T> contextualInstance = (ContextualInstance<T>) contextualInstances
+					.get(contextual);
+			if (contextualInstance != null) {
+				return contextualInstance.getInstance();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isActive() {
+		return contextualInstances != null;
+	}
+
+	/**
+	 * Destroys a contextual instance.
+	 * 
+	 * @param <T>
+	 *            The type of the contextual instance.
+	 * @param contextualInstance
+	 *            The contextual instance.
+	 */
+	private <T> void destroy(ContextualInstance<?> contextualInstance) {
+		@SuppressWarnings("unchecked")
+		ContextualInstance<T> instance = (ContextualInstance<T>) contextualInstance;
+		instance.getContextual().destroy(instance.getInstance(),
+				instance.getCreationalContext());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Class<? extends Annotation> getScope() {
+		return this.scope;
+	}
 
 }

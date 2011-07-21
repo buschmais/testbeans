@@ -20,6 +20,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
 import com.buschmais.testbeans.framework.description.ClassDescription;
 import com.buschmais.testbeans.test.junit.common.delegate.producer.ProducerDisposerTestDelegate;
@@ -35,7 +36,7 @@ public class ProducerDisposerTest extends AbstractMethodRuleTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		TestContextManager.getInstance().activateClassContext(
+		TestContextManager.getInstance().activate(ClassScoped.class,
 				new ClassDescription(ProducerDisposerTest.class.getName()));
 		ProducerDisposerTestDelegate.aroundClass();
 	}
@@ -48,7 +49,7 @@ public class ProducerDisposerTest extends AbstractMethodRuleTest {
 	@AfterClass
 	public static void afterClass() {
 		ProducerDisposerTestDelegate.aroundClass();
-		TestContextManager.getInstance().deactivateClassContext(
+		TestContextManager.getInstance().deactivate(ClassScoped.class,
 				new ClassDescription(ProducerDisposerTest.class.getName()));
 	}
 }

@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
 import com.buschmais.testbeans.framework.description.ClassDescription;
 import com.buschmais.testbeans.junit.common.TestBeansMethodRule;
@@ -29,7 +30,8 @@ import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegat
 import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTest;
 
 /**
- * Test implementation checking the events fired by the {@link TestBeansMethodRule}.
+ * Test implementation checking the events fired by the
+ * {@link TestBeansMethodRule}.
  * <p>
  * Note: the event fired after a test class has been finished is currently not
  * tested.
@@ -42,7 +44,7 @@ public class EventsTest extends AbstractMethodRuleTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		TestContextManager.getInstance().activateClassContext(
+		TestContextManager.getInstance().activate(ClassScoped.class,
 				new ClassDescription(EventsTest.class.getName()));
 		EventTestDelegate.beforeClass(EventsTest.class.getName());
 	}
@@ -65,7 +67,7 @@ public class EventsTest extends AbstractMethodRuleTest {
 	@AfterClass
 	public static void afterClass() {
 		EventTestDelegate.afterClass();
-		TestContextManager.getInstance().activateClassContext(
+		TestContextManager.getInstance().deactivate(ClassScoped.class,
 				new ClassDescription(EventsTest.class.getName()));
 	}
 }

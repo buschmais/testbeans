@@ -18,8 +18,9 @@ package com.buschmais.testbeans.framework.context;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.Bean;
@@ -31,10 +32,10 @@ import org.slf4j.LoggerFactory;
 
 import com.buschmais.testbeans.framework.After;
 import com.buschmais.testbeans.framework.Before;
-import com.buschmais.testbeans.framework.description.ClassDescription;
+import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.MethodScoped;
+import com.buschmais.testbeans.framework.SuiteScoped;
 import com.buschmais.testbeans.framework.description.Description;
-import com.buschmais.testbeans.framework.description.MethodDescription;
-import com.buschmais.testbeans.framework.description.SuiteDescription;
 
 /**
  * 
@@ -55,45 +56,28 @@ public class TestContextManager {
 	private BeanManager beanManager = null;
 
 	/**
-	 * The suite context.
+	 * The {@link TestContext}s managed by this {@link TestContextManager}.
 	 */
-	private SuiteContext suiteContext = new SuiteContext();
+	private Map<Class<? extends Annotation>, TestContext> testContexts = new HashMap<Class<? extends Annotation>, TestContext>();
 
 	/**
-	 * The class context.
+	 * The private constructor.
 	 */
-	private ClassContext classContext = new ClassContext();
-
-	/**
-	 * The method scope.
-	 */
-	private MethodContext methodContext = new MethodContext();
-
-	/**
-	 * Returns the {@link SuiteContext}.
-	 * 
-	 * @return The {@link SuiteContext}.
-	 */
-	public SuiteContext getSuiteContext() {
-		return suiteContext;
+	private TestContextManager() {
+		this.addTestContext(new TestContext(MethodScoped.class));
+		this.addTestContext(new TestContext(ClassScoped.class));
+		this.addTestContext(new TestContext(SuiteScoped.class));
 	}
 
 	/**
-	 * Returns the {@link ClassContext}.
+	 * Adds a {@link TestContext} to the managed {@link TestContext}s.
 	 * 
-	 * @return The {@link ClassContext}.
+	 * @param testContext
+	 *            The {@link TestContext}.
 	 */
-	public ClassContext getClassContext() {
-		return classContext;
-	}
-
-	/**
-	 * Returns the {@link MethodContext}.
-	 * 
-	 * @return The {@link MethodContext}.
-	 */
-	public MethodContext getMethodContext() {
-		return methodContext;
+	private void addTestContext(TestContext testContext) {
+		assertStarted(false);
+		testContexts.put(testContext.getScope(), testContext);
 	}
 
 	/**
@@ -110,7 +94,7 @@ public class TestContextManager {
 	 *            The {@link BeanManager}.
 	 */
 	public void start(BeanManager beanManager) {
-		assertState(false);
+		assertStarted(false);
 		this.beanManager = beanManager;
 	}
 
@@ -118,60 +102,17 @@ public class TestContextManager {
 	 * Stops the {@link TestContextManager}.
 	 */
 	public void stop() {
-		assertState(true);
+		assertStarted(true);
 		this.beanManager = null;
 	}
 
 	/**
-	 * Activates the suite context;
-	 */
-	public void activateSuiteContext(SuiteDescription suiteDescription) {
-		activate(suiteContext, suiteDescription);
-	}
-
-	/**
-	 * Deactivates the suite context;
-	 */
-	public void deactivateSuiteContext(SuiteDescription suiteDescription) {
-		deactivate(suiteContext, suiteDescription);
-	}
-
-	/**
-	 * Activates the class context;
-	 */
-	public void activateClassContext(ClassDescription classDescription) {
-		activate(classContext, classDescription);
-	}
-
-	/**
-	 * Deactivates the class context;
-	 */
-	public void deactivateClassContext(ClassDescription classDescription) {
-		deactivate(classContext, classDescription);
-	}
-
-	/**
-	 * Activates the method context;
-	 */
-	public void activateMethodContext(MethodDescription methodDescription) {
-		activate(methodContext, methodDescription);
-	}
-
-	/**
-	 * Deactivates the method context;
-	 */
-	public void deactivateMethodContext(MethodDescription methodDescription) {
-		deactivate(methodContext, methodDescription);
-	}
-
-	/**
-	 * Returns a list of all managed test contexts.
+	 * Returns a {@link Collection} of all managed test contexts.
 	 * 
-	 * @return A list of all managed test contexts.
+	 * @return A {@link Collection} of all managed test contexts.
 	 */
-	public List<TestContext> getTestContexts() {
-		return Arrays.asList(new TestContext[] { suiteContext, classContext,
-				methodContext });
+	public Collection<TestContext> getTestContexts() {
+		return testContexts.values();
 	}
 
 	/**
@@ -202,7 +143,7 @@ public class TestContextManager {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T get(Type type, Annotation... qualifier) {
-		assertState(true);
+		assertStarted(true);
 		Bean<?> bean = beanManager.getBeans(type, qualifier).iterator().next();
 		return (T) beanManager.getReference(bean, type,
 				beanManager.createCreationalContext(bean));
@@ -218,7 +159,7 @@ public class TestContextManager {
 	 */
 	public void fireEvent(Object value,
 			AnnotationLiteral<? extends Annotation> qualifier) {
-		assertState(true);
+		assertStarted(true);
 		beanManager.fireEvent(value, qualifier);
 	}
 
@@ -229,7 +170,7 @@ public class TestContextManager {
 	 * @param <code>true</code>, if the {@link TestContextManager} is assumed to
 	 *        be started.
 	 */
-	private void assertState(boolean started) {
+	private void assertStarted(boolean started) {
 		if ((started && this.beanManager == null)
 				|| (!started && this.beanManager != null)) {
 			LOGGER.warn(TestContextManager.class.getSimpleName() + " is not "
@@ -246,8 +187,10 @@ public class TestContextManager {
 	 *            The {@link Description}.
 	 */
 	@SuppressWarnings("serial")
-	private void activate(TestContext testContext, Description description) {
-		assertState(true);
+	public void activate(Class<? extends Annotation> scope,
+			Description description) {
+		assertStarted(true);
+		TestContext testContext = this.getTestContext(scope);
 		if (!testContext.isActive()) {
 			testContext.activate();
 			fireEvent(description, new AnnotationLiteral<Before>() {
@@ -266,8 +209,10 @@ public class TestContextManager {
 	 *            The {@link Description}.
 	 */
 	@SuppressWarnings("serial")
-	private void deactivate(TestContext testContext, Description description) {
-		assertState(true);
+	public void deactivate(Class<? extends Annotation> scope,
+			Description description) {
+		assertStarted(true);
+		TestContext testContext = this.getTestContext(scope);
 		if (testContext.isActive()) {
 			fireEvent(description, new AnnotationLiteral<After>() {
 			});
@@ -277,4 +222,21 @@ public class TestContextManager {
 					+ ", it is not active.");
 		}
 	}
+
+	/**
+	 * Returns the {@link TestContext} for the given scope.
+	 * 
+	 * @param scope
+	 *            The scope.
+	 * @return The {@link TestContext}.
+	 */
+	private TestContext getTestContext(Class<? extends Annotation> scope) {
+		TestContext testContext = testContexts.get(scope);
+		if (testContext == null) {
+			throw new IllegalArgumentException("Unknown scope "
+					+ scope.getName());
+		}
+		return testContext;
+	}
+
 }

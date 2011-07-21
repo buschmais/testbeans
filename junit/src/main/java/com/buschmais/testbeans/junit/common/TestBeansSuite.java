@@ -78,11 +78,11 @@ public class TestBeansSuite extends Suite {
 			if (containerAdapter != null) {
 				containerAdapter.start();
 			}
-			TestContextManager.getInstance().activateSuiteContext(
+			TestContextManager.getInstance().activate(SuiteScoped.class,
 					suiteDescription);
 			super.run(notifier);
 		} finally {
-			TestContextManager.getInstance().deactivateSuiteContext(
+			TestContextManager.getInstance().deactivate(SuiteScoped.class,
 					suiteDescription);
 			if (containerAdapter != null) {
 				containerAdapter.stop();

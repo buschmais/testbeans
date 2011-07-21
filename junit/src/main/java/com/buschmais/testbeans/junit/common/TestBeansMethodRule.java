@@ -42,12 +42,12 @@ public class TestBeansMethodRule implements MethodRule {
 	}
 
 	private void before(FrameworkMethod method, Object target) {
-		TestContextManager.getInstance().activateMethodContext(
+		TestContextManager.getInstance().activate(MethodScoped.class,
 				new MethodDescription(method.getName()));
 	}
 
 	private void after(FrameworkMethod method, Object target) {
-		TestContextManager.getInstance().deactivateMethodContext(
+		TestContextManager.getInstance().deactivate(MethodScoped.class,
 				new MethodDescription(method.getName()));
 
 	}

@@ -61,10 +61,10 @@ public class TestBeansRule implements TestRule {
 	 */
 	private void before(Description description) {
 		if (description.isTest()) {
-			TestContextManager.getInstance().activateMethodContext(
+			TestContextManager.getInstance().activate(MethodScoped.class,
 					new MethodDescription(description.getMethodName()));
 		} else {
-			TestContextManager.getInstance().activateClassContext(
+			TestContextManager.getInstance().activate(ClassScoped.class,
 					new ClassDescription(description.getClassName()));
 		}
 	}
@@ -77,10 +77,10 @@ public class TestBeansRule implements TestRule {
 	 */
 	private void after(Description description) {
 		if (description.isTest()) {
-			TestContextManager.getInstance().deactivateMethodContext(
+			TestContextManager.getInstance().deactivate(MethodScoped.class,
 					new MethodDescription(description.getMethodName()));
 		} else {
-			TestContextManager.getInstance().deactivateClassContext(
+			TestContextManager.getInstance().deactivate(ClassScoped.class,
 					new ClassDescription(description.getClassName()));
 		}
 	}
