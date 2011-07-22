@@ -31,7 +31,7 @@ import com.buschmais.testbeans.test.junit.common.bean.context.SuiteScopedBean;
  * 
  * @author dirk.mahler
  */
-public abstract class ContextTestDelegate {
+public abstract class ContextTestDelegate { // CS-IGNORE:HideUtilityClassConstructor
 
 	/**
 	 * BeforeClass.

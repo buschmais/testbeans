@@ -27,7 +27,7 @@ import com.buschmais.testbeans.junit.TestBeansRule;
  * 
  * @author dirk.mahler
  */
-public abstract class AbstractTestRuleTest {
+public abstract class AbstractTestRuleTest { // CS-IGNORE:HideUtilityClassConstructor
 
 	/**
 	 * The rule.
