@@ -14,12 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.framework.description;
+package com.buschmais.testbeans.test.junit.common.bean.context;
+
+import com.buschmais.testbeans.junit.scope.ClassScoped;
+import com.buschmais.testbeans.test.common.bean.AbstractScopedBean;
+
 
 /**
- * Abstract base class for descriptions.
+ * A class scoped bean.
  * 
  * @author dirk.mahler
  */
-public abstract class Description {
+@ClassScoped
+public class ClassScopedBean extends AbstractScopedBean {
 }

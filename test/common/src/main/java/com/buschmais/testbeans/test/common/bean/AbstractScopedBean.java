@@ -14,34 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.framework.description;
+package com.buschmais.testbeans.test.common.bean;
+
 
 /**
- * Describes a test class.
- * 
- * @author dirk.mahler
+ * Abstract implemenation of a scoped bean.
  */
-public class MethodDescription extends Description {
+public class AbstractScopedBean {
 
-	private String methodName;
+	private String payload = "default";
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param methodName
-	 *            The name of the test method.
-	 */
-	public MethodDescription(String methodName) {
-		this.methodName = methodName;
+	public String getPayload() {
+		return payload;
 	}
 
-	/**
-	 * Returns the name of the test method.
-	 * 
-	 * @return The name of the test method.
-	 */
-	public String getMethodName() {
-		return methodName;
+	public void setPayload(String payload) {
+		this.payload = payload;
 	}
 
 }

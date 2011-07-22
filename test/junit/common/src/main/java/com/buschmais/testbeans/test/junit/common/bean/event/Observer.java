@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.event;
+package com.buschmais.testbeans.test.junit.common.bean.event;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.enterprise.event.Observes;
 
-import com.buschmais.testbeans.framework.After;
-import com.buschmais.testbeans.framework.Before;
-import com.buschmais.testbeans.framework.SuiteScoped;
-import com.buschmais.testbeans.framework.description.Description;
+import com.buschmais.testbeans.framework.event.After;
+import com.buschmais.testbeans.framework.event.Before;
+import com.buschmais.testbeans.framework.event.Description;
+import com.buschmais.testbeans.junit.scope.SuiteScoped;
 
 /**
  * A bean observing events.

@@ -21,10 +21,10 @@ import javax.enterprise.context.ContextNotActiveException;
 import org.junit.Assert;
 
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.test.common.bean.context.AbstractScopedBean;
-import com.buschmais.testbeans.test.common.bean.context.ClassScopedBean;
-import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;
-import com.buschmais.testbeans.test.common.bean.context.SuiteScopedBean;
+import com.buschmais.testbeans.test.common.bean.AbstractScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.ClassScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.MethodScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.SuiteScopedBean;
 
 /**
  * Delegate class for tests checking correct scoping of the beans.

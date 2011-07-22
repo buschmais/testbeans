@@ -22,7 +22,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.buschmais.testbeans.container.resin.ResinSE;
 import com.buschmais.testbeans.framework.container.CdiContainer;
-import com.buschmais.testbeans.junit.common.TestBeansSuite;
+import com.buschmais.testbeans.junit.TestBeansSuite;
 
 /**
  * Defines a suite using {@link TestBeansSuite}.

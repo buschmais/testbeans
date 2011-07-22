@@ -14,14 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.framework.description;
+package com.buschmais.testbeans.junit.event;
+
+import com.buschmais.testbeans.framework.event.Description;
 
 /**
  * Describes a test class.
  * 
  * @author dirk.mahler
  */
-public class ClassDescription extends Description {
+public class ClassDescription implements Description {
 
 	private String className;
 

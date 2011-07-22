@@ -14,15 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.context;
+package com.buschmais.testbeans.junit.event;
 
-import com.buschmais.testbeans.framework.ClassScoped;
+import com.buschmais.testbeans.framework.event.Description;
 
 /**
- * A class scoped bean.
+ * Describes a test class.
  * 
  * @author dirk.mahler
  */
-@ClassScoped
-public class ClassScopedBean extends AbstractScopedBean {
+public class MethodDescription implements Description {
+
+	private String methodName;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param methodName
+	 *            The name of the test method.
+	 */
+	public MethodDescription(String methodName) {
+		this.methodName = methodName;
+	}
+
+	/**
+	 * Returns the name of the test method.
+	 * 
+	 * @return The name of the test method.
+	 */
+	public String getMethodName() {
+		return methodName;
+	}
+
 }

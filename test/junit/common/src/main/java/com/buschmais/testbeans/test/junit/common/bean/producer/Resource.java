@@ -14,15 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.producer;
+package com.buschmais.testbeans.test.junit.common.bean.producer;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+/**
+ * A resource which is produced/disposed by the {@link ResourceProducer}.
+ * 
+ * @author dirk.mahler
+ */
+public class Resource {
 
-import javax.inject.Qualifier;
+	private int id;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Qualifier
-public @interface Managed {
+	public void setId(int id) {
+		this.id = id;
+	}
 
+	public int getId() {
+		return id;
+	}
 }

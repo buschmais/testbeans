@@ -21,9 +21,9 @@ import javax.enterprise.util.AnnotationLiteral;
 import org.junit.Assert;
 
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.test.common.bean.producer.Managed;
-import com.buschmais.testbeans.test.common.bean.producer.Resource;
-import com.buschmais.testbeans.test.common.bean.producer.ResourceProducer;
+import com.buschmais.testbeans.test.junit.common.bean.producer.Managed;
+import com.buschmais.testbeans.test.junit.common.bean.producer.Resource;
+import com.buschmais.testbeans.test.junit.common.bean.producer.ResourceProducer;
 
 /**
  * Test checking if activation and deactivation of a scope produces and disposes

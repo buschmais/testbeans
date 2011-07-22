@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.producer;
+package com.buschmais.testbeans.test.junit.common.bean.producer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,8 +23,8 @@ import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 
-import com.buschmais.testbeans.framework.ClassScoped;
-import com.buschmais.testbeans.framework.MethodScoped;
+import com.buschmais.testbeans.junit.scope.ClassScoped;
+import com.buschmais.testbeans.junit.scope.MethodScoped;
 
 /**
  * Produces and disposes {@link Resource}s.

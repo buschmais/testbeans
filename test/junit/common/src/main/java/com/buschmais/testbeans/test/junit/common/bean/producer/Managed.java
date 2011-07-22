@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.context;
+package com.buschmais.testbeans.test.junit.common.bean.producer;
 
-import com.buschmais.testbeans.framework.MethodScoped;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-/**
- * A method scoped bean.
- * 
- * @author dirk.mahler
- */
-@MethodScoped
-public class MethodScopedBean extends AbstractScopedBean {
+import javax.inject.Qualifier;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier
+public @interface Managed {
+
 }

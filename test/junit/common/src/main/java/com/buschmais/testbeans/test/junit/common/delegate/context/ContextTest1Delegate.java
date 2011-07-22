@@ -16,9 +16,9 @@
  */
 package com.buschmais.testbeans.test.junit.common.delegate.context;
 
-import com.buschmais.testbeans.test.common.bean.context.ClassScopedBean;
-import com.buschmais.testbeans.test.common.bean.context.MethodScopedBean;
-import com.buschmais.testbeans.test.common.bean.context.SuiteScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.ClassScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.MethodScopedBean;
+import com.buschmais.testbeans.test.junit.common.bean.context.SuiteScopedBean;
 
 /**
  * Delegate implementation of a test checking correct scoping of beans.

@@ -14,13 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.framework.description;
+package com.buschmais.testbeans.test.junit.common.bean.context;
+
+import com.buschmais.testbeans.junit.scope.SuiteScoped;
+import com.buschmais.testbeans.test.common.bean.AbstractScopedBean;
+
 
 /**
- * Describes a test suite.
+ * A suite scoped bean.
  * 
  * @author dirk.mahler
  */
-public class SuiteDescription extends Description {
-
+@SuiteScoped
+public class SuiteScopedBean extends AbstractScopedBean {
 }

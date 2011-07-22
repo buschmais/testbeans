@@ -19,7 +19,7 @@ package com.buschmais.testbeans.test.junit.common.methodrule;
 import org.junit.Rule;
 import org.junit.rules.MethodRule;
 
-import com.buschmais.testbeans.junit.common.TestBeansMethodRule;
+import com.buschmais.testbeans.junit.TestBeansMethodRule;
 
 @SuppressWarnings("deprecation")
 public class AbstractMethodRuleTest {

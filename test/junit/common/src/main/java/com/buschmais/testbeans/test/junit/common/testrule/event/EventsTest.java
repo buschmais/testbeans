@@ -22,7 +22,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.buschmais.testbeans.junit.common.TestBeansRule;
+import com.buschmais.testbeans.junit.TestBeansRule;
 import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.common.testrule.AbstractTestRuleTest;
 

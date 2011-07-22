@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.buschmais.testbeans.container.owbse.OpenWebBeansSE;
 import com.buschmais.testbeans.framework.container.CdiContainer;
-import com.buschmais.testbeans.junit.common.TestBeansSuite;
+import com.buschmais.testbeans.junit.TestBeansSuite;
 import com.buschmais.testbeans.test.junit.common.testrule.context.ContextTest1;
 import com.buschmais.testbeans.test.junit.common.testrule.context.ContextTest2;
 

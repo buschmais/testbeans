@@ -20,7 +20,7 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 
-import com.buschmais.testbeans.junit.common.TestBeansRule;
+import com.buschmais.testbeans.junit.TestBeansRule;
 
 public class AbstractTestRuleTest {
 

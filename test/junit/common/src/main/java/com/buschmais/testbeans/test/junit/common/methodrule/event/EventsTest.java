@@ -22,10 +22,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.buschmais.testbeans.framework.ClassScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.junit.common.TestBeansMethodRule;
+import com.buschmais.testbeans.junit.TestBeansMethodRule;
+import com.buschmais.testbeans.junit.event.ClassDescription;
+import com.buschmais.testbeans.junit.scope.ClassScoped;
 import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTest;
 

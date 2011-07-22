@@ -14,22 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.context;
+package com.buschmais.testbeans.junit.event;
 
+import com.buschmais.testbeans.framework.event.Description;
 
 /**
- * Abstract implemenation of a scoped bean.
+ * Describes a test suite.
+ * 
+ * @author dirk.mahler
  */
-public class AbstractScopedBean {
-
-	private String payload = "default";
-
-	public String getPayload() {
-		return payload;
-	}
-
-	public void setPayload(String payload) {
-		this.payload = payload;
-	}
+public class SuiteDescription implements Description {
 
 }

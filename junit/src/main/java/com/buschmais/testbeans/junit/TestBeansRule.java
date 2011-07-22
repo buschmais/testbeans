@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.common;
+package com.buschmais.testbeans.junit;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import com.buschmais.testbeans.framework.ClassScoped;
-import com.buschmais.testbeans.framework.MethodScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.framework.description.MethodDescription;
+import com.buschmais.testbeans.junit.event.ClassDescription;
+import com.buschmais.testbeans.junit.event.MethodDescription;
+import com.buschmais.testbeans.junit.scope.ClassScoped;
+import com.buschmais.testbeans.junit.scope.MethodScoped;
 
 /**
  * Abstract implementation of a JUnit {@link TestRule} which controls the life

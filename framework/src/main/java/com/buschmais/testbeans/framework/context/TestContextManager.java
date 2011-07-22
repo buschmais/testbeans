@@ -20,8 +20,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
+import javax.enterprise.context.NormalScope;
 import javax.enterprise.inject.Default;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
@@ -30,12 +32,9 @@ import javax.enterprise.util.AnnotationLiteral;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.buschmais.testbeans.framework.After;
-import com.buschmais.testbeans.framework.Before;
-import com.buschmais.testbeans.framework.ClassScoped;
-import com.buschmais.testbeans.framework.MethodScoped;
-import com.buschmais.testbeans.framework.SuiteScoped;
-import com.buschmais.testbeans.framework.description.Description;
+import com.buschmais.testbeans.framework.event.After;
+import com.buschmais.testbeans.framework.event.Before;
+import com.buschmais.testbeans.framework.event.Description;
 
 /**
  * 
@@ -61,30 +60,28 @@ public class TestContextManager {
 	private Map<Class<? extends Annotation>, TestContext> testContexts = new HashMap<Class<? extends Annotation>, TestContext>();
 
 	/**
-	 * The private constructor.
-	 */
-	private TestContextManager() {
-		this.addTestContext(new TestContext(MethodScoped.class));
-		this.addTestContext(new TestContext(ClassScoped.class));
-		this.addTestContext(new TestContext(SuiteScoped.class));
-	}
-
-	/**
-	 * Adds a {@link TestContext} to the managed {@link TestContext}s.
-	 * 
-	 * @param testContext
-	 *            The {@link TestContext}.
-	 */
-	private void addTestContext(TestContext testContext) {
-		assertStarted(false);
-		testContexts.put(testContext.getScope(), testContext);
-	}
-
-	/**
 	 * Returns the {@link TestContextManager} instance.
 	 */
 	public static TestContextManager getInstance() {
 		return instance;
+	}
+
+	/**
+	 * Creates {@link TestContext}s with the given scope.
+	 * 
+	 * @param scope
+	 *            The scope.
+	 */
+	public void create(Class<? extends Annotation>... scopes) {
+		assertStarted(false);
+		for (Class<? extends Annotation> scope : scopes) {
+			if (scope.getAnnotation(NormalScope.class) != null) {
+				testContexts.put(scope, new TestContext(scope));
+			} else {
+				throw new IllegalArgumentException(scope.getName()
+						+ " is not annotated with " + NormalScope.class);
+			}
+		}
 	}
 
 	/**
@@ -104,6 +101,7 @@ public class TestContextManager {
 	public void stop() {
 		assertStarted(true);
 		this.beanManager = null;
+		this.testContexts.clear();
 	}
 
 	/**
@@ -144,9 +142,14 @@ public class TestContextManager {
 	@SuppressWarnings("unchecked")
 	public <T> T get(Type type, Annotation... qualifier) {
 		assertStarted(true);
-		Bean<?> bean = beanManager.getBeans(type, qualifier).iterator().next();
-		return (T) beanManager.getReference(bean, type,
-				beanManager.createCreationalContext(bean));
+		Iterator<Bean<?>> iterator = beanManager.getBeans(type, qualifier)
+				.iterator();
+		if (iterator.hasNext()) {
+			Bean<?> bean = iterator.next();
+			return (T) beanManager.getReference(bean, type,
+					beanManager.createCreationalContext(bean));
+		}
+		return null;
 	}
 
 	/**

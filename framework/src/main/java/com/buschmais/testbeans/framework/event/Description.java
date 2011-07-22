@@ -14,22 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.common.bean.producer;
+package com.buschmais.testbeans.framework.event;
+
+import javax.enterprise.event.Observes;
 
 /**
- * A resource which is produced/disposed by the {@link ResourceProducer}.
+ * Interface for descriptions which are fired and may be observed using
+ * {@link Observes}.
  * 
  * @author dirk.mahler
  */
-public class Resource {
-
-	private int id;
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
-	}
+public interface Description {
 }

@@ -199,4 +199,11 @@ public class TestContext implements Context {
 		return this.scope;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return "TestContext [scope=" + scope + "]";
+	}
 }

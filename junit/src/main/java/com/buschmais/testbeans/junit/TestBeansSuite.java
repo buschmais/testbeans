@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.junit.common;
+package com.buschmais.testbeans.junit;
 
 import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
@@ -22,11 +22,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
-import com.buschmais.testbeans.framework.SuiteScoped;
 import com.buschmais.testbeans.framework.container.CdiContainer;
 import com.buschmais.testbeans.framework.container.CdiContainerAdapter;
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.framework.description.SuiteDescription;
+import com.buschmais.testbeans.junit.event.SuiteDescription;
+import com.buschmais.testbeans.junit.scope.SuiteScoped;
 
 /**
  * Abstract {@link Runner} which derives from {@link Suite} and controls the
@@ -72,18 +72,18 @@ public class TestBeansSuite extends Suite {
 	 */
 	@Override
 	public void run(RunNotifier notifier) {
-		SuiteDescription suiteDescription = new SuiteDescription();
+		TestContextManager testContextManager = TestContextManager
+				.getInstance();
 		CdiContainerAdapter containerAdapter = this.getContainerAdapter();
+		SuiteDescription suiteDescription = new SuiteDescription();
 		try {
 			if (containerAdapter != null) {
 				containerAdapter.start();
 			}
-			TestContextManager.getInstance().activate(SuiteScoped.class,
-					suiteDescription);
+			testContextManager.activate(SuiteScoped.class, suiteDescription);
 			super.run(notifier);
 		} finally {
-			TestContextManager.getInstance().deactivate(SuiteScoped.class,
-					suiteDescription);
+			testContextManager.deactivate(SuiteScoped.class, suiteDescription);
 			if (containerAdapter != null) {
 				containerAdapter.stop();
 			}

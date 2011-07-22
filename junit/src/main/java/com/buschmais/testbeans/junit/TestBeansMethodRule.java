@@ -1,13 +1,13 @@
-package com.buschmais.testbeans.junit.common;
+package com.buschmais.testbeans.junit;
 
 import org.junit.rules.MethodRule;
 import org.junit.rules.TestRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import com.buschmais.testbeans.framework.MethodScoped;
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.framework.description.MethodDescription;
+import com.buschmais.testbeans.junit.event.MethodDescription;
+import com.buschmais.testbeans.junit.scope.MethodScoped;
 
 /**
  * Abstract implementation of a JUnit {@link TestRule} which controls the life

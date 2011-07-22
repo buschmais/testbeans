@@ -21,11 +21,11 @@ import java.util.Queue;
 import junit.framework.Assert;
 
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.framework.description.ClassDescription;
-import com.buschmais.testbeans.framework.description.Description;
-import com.buschmais.testbeans.framework.description.MethodDescription;
-import com.buschmais.testbeans.framework.description.SuiteDescription;
-import com.buschmais.testbeans.test.common.bean.event.Observer;
+import com.buschmais.testbeans.framework.event.Description;
+import com.buschmais.testbeans.junit.event.ClassDescription;
+import com.buschmais.testbeans.junit.event.MethodDescription;
+import com.buschmais.testbeans.junit.event.SuiteDescription;
+import com.buschmais.testbeans.test.junit.common.bean.event.Observer;
 
 /**
  * Test implementation checking the events.
