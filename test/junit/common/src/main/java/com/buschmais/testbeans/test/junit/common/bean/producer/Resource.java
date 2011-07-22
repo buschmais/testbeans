@@ -23,12 +23,26 @@ package com.buschmais.testbeans.test.junit.common.bean.producer;
  */
 public class Resource {
 
+	/**
+	 * The id of the resource.
+	 */
 	private int id;
 
+	/**
+	 * Sets the id.
+	 * 
+	 * @param id
+	 *            The id.
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * Returns the id.
+	 * 
+	 * @return The id.
+	 */
 	public int getId() {
 		return id;
 	}

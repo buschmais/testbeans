@@ -16,7 +16,6 @@
  */
 package com.buschmais.testbeans.junit;
 
-import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
@@ -29,13 +28,16 @@ import com.buschmais.testbeans.junit.event.SuiteDescription;
 import com.buschmais.testbeans.junit.scope.SuiteScoped;
 
 /**
- * Abstract {@link Runner} which derives from {@link Suite} and controls the
- * lifecycle of the suite context, see {@link SuiteScoped}.
+ * Suite implementation which derives from JUnit's {@link Suite} and controls
+ * the life cycle of the suite context, see {@link SuiteScoped}.
  * 
  * @author dirk.mahler
  */
 public class TestBeansSuite extends Suite {
 
+	/**
+	 * The {@link CdiContainer} annotation as specified on the suite class.
+	 */
 	private CdiContainer container = null;
 
 	/**
@@ -46,6 +48,7 @@ public class TestBeansSuite extends Suite {
 	 * @param klass
 	 *            The class.
 	 * @throws InitializationError
+	 *             If initialization fails.
 	 */
 	public TestBeansSuite(Class<?> klass, RunnerBuilder builder)
 			throws InitializationError {
@@ -61,6 +64,7 @@ public class TestBeansSuite extends Suite {
 	 * @param classes
 	 *            The classes.
 	 * @throws InitializationError
+	 *             If initialization fails.
 	 */
 	public TestBeansSuite(RunnerBuilder builder, Class<?>[] classes)
 			throws InitializationError {

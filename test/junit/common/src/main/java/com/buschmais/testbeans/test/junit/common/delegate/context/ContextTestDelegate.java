@@ -31,8 +31,11 @@ import com.buschmais.testbeans.test.junit.common.bean.context.SuiteScopedBean;
  * 
  * @author dirk.mahler
  */
-public class ContextTestDelegate {
+public abstract class ContextTestDelegate {
 
+	/**
+	 * BeforeClass.
+	 */
 	public static void beforeAbstractClass() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "default");
@@ -40,6 +43,9 @@ public class ContextTestDelegate {
 		checkUnexpectedBean(MethodScopedBean.class);
 	}
 
+	/**
+	 * Before.
+	 */
 	public static void beforeAbstract() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
@@ -47,33 +53,65 @@ public class ContextTestDelegate {
 		setPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * Test.
+	 */
 	public static void testAbstract() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * After.
+	 */
 	public static void afterAbstract() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	public static void afterAbstractClass() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkUnexpectedBean(MethodScopedBean.class);
 	}
 
+	/**
+	 * Returns the {@link AbstractScopedBean} instance for the given class.
+	 * 
+	 * @param beanClass
+	 *            The class.
+	 * @return The instance.
+	 */
 	private static AbstractScopedBean getBean(Class<?> beanClass) {
 		return (AbstractScopedBean) TestContextManager.getInstance().get(
 				beanClass);
 	}
 
+	/**
+	 * Sets the payload of a bean.
+	 * 
+	 * @param beanClass
+	 *            The bean class.
+	 * @param payload
+	 *            The payload.
+	 */
 	private static void setPayload(Class<?> beanClass, String payload) {
 		getBean(beanClass).setPayload(payload);
 	}
 
+	/**
+	 * Checks the payload.
+	 * 
+	 * @param expectedBeanClass
+	 *            The bean class.
+	 * @param expectedPayload
+	 *            The expected payload.
+	 */
 	protected static void checkPayload(Class<?> expectedBeanClass,
 			String expectedPayload) {
 		try {
@@ -84,11 +122,19 @@ public class ContextTestDelegate {
 		}
 	}
 
+	/**
+	 * Checks if a bean cannot be accessed because context it is bound to is not
+	 * activated.
+	 * 
+	 * @param unexpectedBeanClass
+	 *            The bean class.
+	 */
 	protected static void checkUnexpectedBean(Class<?> unexpectedBeanClass) {
 		try {
 			getBean(unexpectedBeanClass).getPayload();
 			Assert.fail("unexpected bean " + unexpectedBeanClass);
 		} catch (ContextNotActiveException e) {
+			return;
 		}
 	}
 }

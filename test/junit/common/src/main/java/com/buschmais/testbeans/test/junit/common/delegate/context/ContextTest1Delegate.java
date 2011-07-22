@@ -25,33 +25,47 @@ import com.buschmais.testbeans.test.junit.common.bean.context.SuiteScopedBean;
  * 
  * @author dirk.mahler
  */
-public final class ContextTest1Delegate extends
-		ContextTestDelegate {
+public final class ContextTest1Delegate extends ContextTestDelegate {
 
+	/**
+	 * BeforeClass.
+	 */
 	public static void beforeConcreteClass() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkUnexpectedBean(MethodScopedBean.class);
 	}
 
+	/**
+	 * Before.
+	 */
 	public static void beforeConcrete() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * Test.
+	 */
 	public static void testConcrete() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * After.
+	 */
 	public static void afterConcrete() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");
 		checkPayload(MethodScopedBean.class, "test");
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	public static void afterConcreteClass() {
 		checkPayload(SuiteScopedBean.class, "default");
 		checkPayload(ClassScopedBean.class, "class");

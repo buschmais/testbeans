@@ -25,6 +25,9 @@ import com.buschmais.testbeans.framework.event.Description;
  */
 public class MethodDescription implements Description {
 
+	/**
+	 * The method name.
+	 */
 	private String methodName;
 
 	/**
@@ -45,5 +48,4 @@ public class MethodDescription implements Description {
 	public String getMethodName() {
 		return methodName;
 	}
-
 }

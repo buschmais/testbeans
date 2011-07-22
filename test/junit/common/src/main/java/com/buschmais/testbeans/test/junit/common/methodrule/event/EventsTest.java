@@ -23,7 +23,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.buschmais.testbeans.framework.context.TestContextManager;
-import com.buschmais.testbeans.junit.TestBeansMethodRule;
 import com.buschmais.testbeans.junit.event.ClassDescription;
 import com.buschmais.testbeans.junit.scope.ClassScoped;
 import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegate;
@@ -31,7 +30,7 @@ import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTe
 
 /**
  * Test implementation checking the events fired by the
- * {@link TestBeansMethodRule}.
+ * {@link com.buschmais.testbeans.junit.TestBeansMethodRule}.
  * <p>
  * Note: the event fired after a test class has been finished is currently not
  * tested.
@@ -39,9 +38,11 @@ import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTe
  * 
  * @author dirk.mahler
  */
-@SuppressWarnings("deprecation")
 public class EventsTest extends AbstractMethodRuleTest {
 
+	/**
+	 * BeforeClass.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		TestContextManager.getInstance().activate(ClassScoped.class,
@@ -49,21 +50,33 @@ public class EventsTest extends AbstractMethodRuleTest {
 		EventTestDelegate.beforeClass(EventsTest.class.getName());
 	}
 
+	/**
+	 * Before.
+	 */
 	@Before
 	public void before() {
 		EventTestDelegate.before();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		EventTestDelegate.test();
 	}
 
+	/**
+	 * After.
+	 */
 	@After
 	public void after() {
 		EventTestDelegate.after();
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	@AfterClass
 	public static void afterClass() {
 		EventTestDelegate.afterClass();

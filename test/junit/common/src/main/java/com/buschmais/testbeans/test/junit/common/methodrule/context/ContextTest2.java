@@ -16,12 +16,11 @@
  */
 package com.buschmais.testbeans.test.junit.common.methodrule.context;
 
-
 /**
  * Concrete implementation of a test checking correct scoping of beans.
  * 
  * @author dirk.mahler
  */
-public class ContextTest2 extends ContextTest{
+public class ContextTest2 extends ContextTest {
 
 }

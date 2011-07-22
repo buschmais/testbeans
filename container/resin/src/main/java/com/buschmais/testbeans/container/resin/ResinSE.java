@@ -30,6 +30,9 @@ import com.caucho.resin.ResinBeanContainer;
  */
 public class ResinSE implements CdiContainerAdapter {
 
+	/**
+	 * The {@link Logger} instance.
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ResinSE.class);
 
 	/**

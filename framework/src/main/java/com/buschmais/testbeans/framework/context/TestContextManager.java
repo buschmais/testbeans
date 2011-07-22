@@ -44,10 +44,16 @@ import com.buschmais.testbeans.framework.event.Description;
  */
 public class TestContextManager {
 
+	/**
+	 * The {@link Logger} instance.
+	 */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(TestContextManager.class);
 
-	private static final TestContextManager instance = new TestContextManager();
+	/**
+	 * The {@link TestContextManager} singleton.
+	 */
+	private static final TestContextManager INSTANCE = new TestContextManager();
 
 	/**
 	 * The {@link BeanManager}.
@@ -61,16 +67,18 @@ public class TestContextManager {
 
 	/**
 	 * Returns the {@link TestContextManager} instance.
+	 * 
+	 * @return The {@link TestContextManager} instance.
 	 */
 	public static TestContextManager getInstance() {
-		return instance;
+		return INSTANCE;
 	}
 
 	/**
-	 * Creates {@link TestContext}s with the given scope.
+	 * Creates {@link TestContext}s for the given scopes.
 	 * 
-	 * @param scope
-	 *            The scope.
+	 * @param scopes
+	 *            The scopes.
 	 */
 	public void create(Class<? extends Annotation>... scopes) {
 		assertStarted(false);
@@ -87,12 +95,12 @@ public class TestContextManager {
 	/**
 	 * Starts the {@link TestContextManager}.
 	 * 
-	 * @param beanManager
+	 * @param manager
 	 *            The {@link BeanManager}.
 	 */
-	public void start(BeanManager beanManager) {
+	public void start(BeanManager manager) {
 		assertStarted(false);
-		this.beanManager = beanManager;
+		this.beanManager = manager;
 	}
 
 	/**
@@ -170,8 +178,9 @@ public class TestContextManager {
 	 * Checks wether the {@link TestContextManager} is started/stopped and logs
 	 * a warning.
 	 * 
-	 * @param <code>true</code>, if the {@link TestContextManager} is assumed to
-	 *        be started.
+	 * @param started
+	 *            <code>true</code>, if the {@link TestContextManager} is
+	 *            assumed to be started.
 	 */
 	private void assertStarted(boolean started) {
 		if ((started && this.beanManager == null)
@@ -184,8 +193,8 @@ public class TestContextManager {
 	/**
 	 * Activates a given {@link TestContext}.
 	 * 
-	 * @param testContext
-	 *            The {@link TestContext}.
+	 * @param scope
+	 *            The scope of the {@link TestContext} to activate.
 	 * @param description
 	 *            The {@link Description}.
 	 */
@@ -206,8 +215,8 @@ public class TestContextManager {
 	/**
 	 * Deactivates a given {@link TestContext}.
 	 * 
-	 * @param testContext
-	 *            The {@link TestContext}.
+	 * @param scope
+	 *            The scope of the {@link TestContext} to deactivate.
 	 * @param description
 	 *            The {@link Description}.
 	 */

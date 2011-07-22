@@ -16,11 +16,9 @@
  */
 package com.buschmais.testbeans.framework.event;
 
-import javax.enterprise.event.Observes;
 
 /**
- * Interface for descriptions which are fired and may be observed using
- * {@link Observes}.
+ * Interface for descriptions which are fired.
  * 
  * @author dirk.mahler
  */

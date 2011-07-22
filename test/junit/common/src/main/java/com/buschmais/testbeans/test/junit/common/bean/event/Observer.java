@@ -34,22 +34,50 @@ import com.buschmais.testbeans.junit.scope.SuiteScoped;
 @SuiteScoped
 public class Observer {
 
+	/**
+	 * The captured {@link Before} events.
+	 */
 	private Queue<Description> beforeEvents = new LinkedList<Description>();
 
+	/**
+	 * The captured {@link After} events.
+	 */
 	private Queue<Description> afterEvents = new LinkedList<Description>();
 
+	/**
+	 * {@link Before} event observer.
+	 * 
+	 * @param description
+	 *            The {@link Description}.
+	 */
 	public void before(@Observes @Before Description description) {
 		beforeEvents.offer(description);
 	}
 
+	/**
+	 * {@link After} event observer.
+	 * 
+	 * @param description
+	 *            The {@link Description}.
+	 */
 	public void after(@Observes @After Description description) {
 		afterEvents.offer(description);
 	}
 
+	/**
+	 * Returns the capured {@link Before} events.
+	 * 
+	 * @return The capured {@link Before} events.
+	 */
 	public Queue<Description> getBeforeEvents() {
 		return beforeEvents;
 	}
 
+	/**
+	 * Returns the capured {@link After} events.
+	 * 
+	 * @return The capured {@link After} events.
+	 */
 	public Queue<Description> getAfterEvents() {
 		return afterEvents;
 	}

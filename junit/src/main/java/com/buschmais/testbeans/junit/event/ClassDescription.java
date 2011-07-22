@@ -25,6 +25,9 @@ import com.buschmais.testbeans.framework.event.Description;
  */
 public class ClassDescription implements Description {
 
+	/**
+	 * The class name.
+	 */
 	private String className;
 
 	/**

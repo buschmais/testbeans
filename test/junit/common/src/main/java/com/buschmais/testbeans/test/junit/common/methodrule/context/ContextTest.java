@@ -35,6 +35,9 @@ import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTe
  */
 public class ContextTest extends AbstractMethodRuleTest {
 
+	/**
+	 * BeforeClass.
+	 */
 	@BeforeClass
 	public static void beforeAbstractClass() {
 		TestContextManager.getInstance().activate(ClassScoped.class,
@@ -42,21 +45,33 @@ public class ContextTest extends AbstractMethodRuleTest {
 		ContextTestDelegate.beforeAbstractClass();
 	}
 
+	/**
+	 * Before.
+	 */
 	@Before
 	public void beforeAbstract() {
 		ContextTestDelegate.beforeAbstract();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void testAbstract() {
 		ContextTestDelegate.testAbstract();
 	}
 
+	/**
+	 * After.
+	 */
 	@After
 	public void afterAbstract() {
 		ContextTestDelegate.afterAbstract();
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	@AfterClass
 	public static void afterAbstractClass() {
 		ContextTestDelegate.afterAbstractClass();

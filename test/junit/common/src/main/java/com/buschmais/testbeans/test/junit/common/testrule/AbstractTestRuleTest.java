@@ -22,10 +22,18 @@ import org.junit.rules.TestRule;
 
 import com.buschmais.testbeans.junit.TestBeansRule;
 
-public class AbstractTestRuleTest {
+/**
+ * Abstract class for all tests using the {@link TestBeansRule}.
+ * 
+ * @author dirk.mahler
+ */
+public abstract class AbstractTestRuleTest {
 
+	/**
+	 * The rule.
+	 */
 	@ClassRule
 	@Rule
-	public static TestRule testRule = new TestBeansRule();
+	public static TestRule testRule = new TestBeansRule(); // CS-IGNORE:VisibilityModifierCheck
 
 }

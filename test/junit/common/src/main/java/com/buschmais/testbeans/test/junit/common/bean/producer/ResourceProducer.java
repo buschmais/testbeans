@@ -39,6 +39,9 @@ public class ResourceProducer {
 	 */
 	private Set<Resource> resources = new HashSet<Resource>();
 
+	/**
+	 * The sequence of ids for produces {@link Resource}s.
+	 */
 	private int sequence = 0;
 
 	/**

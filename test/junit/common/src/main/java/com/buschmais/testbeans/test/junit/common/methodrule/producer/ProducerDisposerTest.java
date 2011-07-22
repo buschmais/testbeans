@@ -34,6 +34,9 @@ import com.buschmais.testbeans.test.junit.common.methodrule.AbstractMethodRuleTe
  */
 public class ProducerDisposerTest extends AbstractMethodRuleTest {
 
+	/**
+	 * BeforeClass.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		TestContextManager.getInstance().activate(ClassScoped.class,
@@ -41,11 +44,17 @@ public class ProducerDisposerTest extends AbstractMethodRuleTest {
 		ProducerDisposerTestDelegate.aroundClass();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void testProduceDispose() {
 		ProducerDisposerTestDelegate.testProduceDispose();
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	@AfterClass
 	public static void afterClass() {
 		ProducerDisposerTestDelegate.aroundClass();

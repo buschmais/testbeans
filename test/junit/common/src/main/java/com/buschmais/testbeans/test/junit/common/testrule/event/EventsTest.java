@@ -22,12 +22,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.buschmais.testbeans.junit.TestBeansRule;
 import com.buschmais.testbeans.test.junit.common.delegate.event.EventTestDelegate;
 import com.buschmais.testbeans.test.junit.common.testrule.AbstractTestRuleTest;
 
 /**
- * Test implementation checking the events fired by the {@link TestBeansRule}.
+ * Test implementation checking the events fired by the
+ * {@link com.buschmais.testbeans.junit.TestBeansRule}.
  * <p>
  * Note: the event fired after a test class has been finished is currently not
  * tested.
@@ -37,26 +37,41 @@ import com.buschmais.testbeans.test.junit.common.testrule.AbstractTestRuleTest;
  */
 public class EventsTest extends AbstractTestRuleTest {
 
+	/**
+	 * BeforeClass.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		EventTestDelegate.beforeClass(EventsTest.class.getName());
 	}
 
+	/**
+	 * Before.
+	 */
 	@Before
 	public void before() {
 		EventTestDelegate.before();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void test() {
 		EventTestDelegate.test();
 	}
 
+	/**
+	 * After.
+	 */
 	@After
 	public void after() {
 		EventTestDelegate.after();
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	@AfterClass
 	public static void afterClass() {
 		EventTestDelegate.afterClass();

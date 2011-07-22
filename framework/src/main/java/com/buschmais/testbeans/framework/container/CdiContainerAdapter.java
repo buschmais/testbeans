@@ -27,11 +27,11 @@ public interface CdiContainerAdapter {
 	/**
 	 * Start the container.
 	 */
-	public void start();
+	void start();
 
 	/**
 	 * Stop the container.
 	 */
-	public void stop();
+	void stop();
 
 }

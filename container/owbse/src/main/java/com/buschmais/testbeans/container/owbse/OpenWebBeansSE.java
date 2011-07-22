@@ -31,9 +31,15 @@ import com.buschmais.testbeans.framework.container.CdiContainerAdapter;
  */
 public class OpenWebBeansSE implements CdiContainerAdapter {
 
+	/**
+	 * The {@link Logger} instance.
+	 */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(OpenWebBeansSE.class);
 
+	/**
+	 * The Apache OpenWebBeans container life cycle.
+	 */
 	private ContainerLifecycle containerLifecycle = null;
 
 	/**

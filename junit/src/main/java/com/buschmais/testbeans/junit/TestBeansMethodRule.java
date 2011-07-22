@@ -1,7 +1,6 @@
 package com.buschmais.testbeans.junit;
 
 import org.junit.rules.MethodRule;
-import org.junit.rules.TestRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
@@ -10,7 +9,7 @@ import com.buschmais.testbeans.junit.event.MethodDescription;
 import com.buschmais.testbeans.junit.scope.MethodScoped;
 
 /**
- * Abstract implementation of a JUnit {@link TestRule} which controls the life
+ * Abstract implementation of a JUnit {@link MethodRule} which controls the life
  * cycle of JUnit-related contexts, see {@link MethodScoped}.
  * 
  * @author dirk.mahler
@@ -30,26 +29,18 @@ public class TestBeansMethodRule implements MethodRule {
 			@Override
 			public void evaluate() throws Throwable {
 				try {
-					before(method, target);
+					TestContextManager.getInstance().activate(
+							MethodScoped.class,
+							new MethodDescription(method.getName()));
 					base.evaluate();
 				} catch (Throwable t) {
 					throw t;
 				} finally {
-					after(method, target);
+					TestContextManager.getInstance().deactivate(
+							MethodScoped.class,
+							new MethodDescription(method.getName()));
 				}
 			}
 		};
 	}
-
-	private void before(FrameworkMethod method, Object target) {
-		TestContextManager.getInstance().activate(MethodScoped.class,
-				new MethodDescription(method.getName()));
-	}
-
-	private void after(FrameworkMethod method, Object target) {
-		TestContextManager.getInstance().deactivate(MethodScoped.class,
-				new MethodDescription(method.getName()));
-
-	}
-
 }

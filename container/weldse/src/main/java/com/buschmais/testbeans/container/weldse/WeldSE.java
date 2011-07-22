@@ -31,12 +31,19 @@ import com.buschmais.testbeans.framework.container.CdiContainerAdapter;
  */
 public class WeldSE implements CdiContainerAdapter {
 
+	/**
+	 * The {@link Logger} instance.
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(WeldSE.class);
 	/**
 	 * The {@link Weld} and {@link WeldContainer} instances managed by this
 	 * container.
 	 */
 	private Weld weld = null;
+
+	/**
+	 * The {@link WeldContainer} instance.
+	 */
 	private WeldContainer weldContainer = null;
 
 	/**

@@ -16,18 +16,31 @@
  */
 package com.buschmais.testbeans.test.common.bean;
 
-
 /**
  * Abstract implemenation of a scoped bean.
  */
 public class AbstractScopedBean {
 
+	/**
+	 * The payload.
+	 */
 	private String payload = "default";
 
+	/**
+	 * Returns the payload.
+	 * 
+	 * @return The payload.
+	 */
 	public String getPayload() {
 		return payload;
 	}
 
+	/**
+	 * Set the payload.
+	 * 
+	 * @param payload
+	 *            The payload.
+	 */
 	public void setPayload(String payload) {
 		this.payload = payload;
 	}

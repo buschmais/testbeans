@@ -36,8 +36,20 @@ import com.buschmais.testbeans.test.junit.common.bean.event.Observer;
  * 
  * @author dirk.mahler
  */
-public class EventTestDelegate {
+public final class EventTestDelegate {
 
+	/**
+	 * Private constructor.
+	 */
+	private EventTestDelegate() {
+	}
+
+	/**
+	 * Before class.
+	 * 
+	 * @param className
+	 *            The expected class name.
+	 */
 	public static void beforeClass(String className) {
 		Description description = getBeforeEvents().poll();
 		Assert.assertNotNull(description);
@@ -53,6 +65,9 @@ public class EventTestDelegate {
 		Assert.assertNull(getAfterEvents().peek());
 	}
 
+	/**
+	 * Before.
+	 */
 	public static void before() {
 		Description description = getBeforeEvents().poll();
 		Assert.assertNotNull(description);
@@ -64,16 +79,25 @@ public class EventTestDelegate {
 		Assert.assertNull(getAfterEvents().peek());
 	}
 
+	/**
+	 * Test.
+	 */
 	public static void test() {
 		Assert.assertNull(getBeforeEvents().peek());
 		Assert.assertNull(getAfterEvents().peek());
 	}
 
+	/**
+	 * After.
+	 */
 	public static void after() {
 		Assert.assertNull(getBeforeEvents().peek());
 		Assert.assertNull(getAfterEvents().peek());
 	}
 
+	/**
+	 * AfterClass.
+	 */
 	public static void afterClass() {
 		Description description = getAfterEvents().poll();
 		Assert.assertNotNull(description);
@@ -85,12 +109,22 @@ public class EventTestDelegate {
 		Assert.assertNull(getAfterEvents().peek());
 	}
 
+	/**
+	 * Returns all captured {@link com.buschmais.testbeans.framework.event.Before} events.
+	 * 
+	 * @return The events.
+	 */
 	private static Queue<Description> getBeforeEvents() {
 		Observer observer = TestContextManager.getInstance()
 				.get(Observer.class);
 		return observer.getBeforeEvents();
 	}
 
+	/**
+	 * Returns all captured {@link com.buschmais.testbeans.framework.event.After} events.
+	 * 
+	 * @return The events.
+	 */
 	private static Queue<Description> getAfterEvents() {
 		Observer observer = TestContextManager.getInstance()
 				.get(Observer.class);

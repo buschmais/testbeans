@@ -21,6 +21,13 @@ import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Qualifier;
 
+/**
+ * A qualifier for the tests based on {@link Resource} and
+ * {@link ResourceProducer}.
+ * 
+ * @author dirk.mahler
+ * 
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Qualifier
 public @interface Managed {

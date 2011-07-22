@@ -38,6 +38,9 @@ import org.slf4j.LoggerFactory;
  */
 public class TestContext implements Context {
 
+	/**
+	 * The {@link Logger} instance.
+	 */
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(TestContext.class);
 
@@ -49,14 +52,33 @@ public class TestContext implements Context {
 	 * @param <T>
 	 *            The type of the contextual instance.
 	 */
-	private static class ContextualInstance<T> {
+	private static final class ContextualInstance<T> {
 
+		/**
+		 * The {@link Contextual}.
+		 */
 		private Contextual<T> contextual;
 
+		/**
+		 * The {@link CreationalContext}.
+		 */
 		private CreationalContext<T> creationalContext;
 
+		/**
+		 * The instance.
+		 */
 		private T instance;
 
+		/**
+		 * Constructs a {@link ContextualInstance}.
+		 * 
+		 * @param contextual
+		 *            The {@link Contextual}.
+		 * @param creationalContext
+		 *            The {@link CreationalContext}.
+		 * @param instance
+		 *            The instance.
+		 */
 		private ContextualInstance(Contextual<T> contextual,
 				CreationalContext<T> creationalContext, T instance) {
 			this.contextual = contextual;
@@ -64,14 +86,29 @@ public class TestContext implements Context {
 			this.instance = instance;
 		}
 
+		/**
+		 * Returns the {@link Contextual}.
+		 * 
+		 * @return The {@link Contextual}.
+		 */
 		public Contextual<T> getContextual() {
 			return contextual;
 		}
 
+		/**
+		 * Returns the {@link CreationalContext}.
+		 * 
+		 * @return The {@link CreationalContext}.
+		 */
 		public CreationalContext<T> getCreationalContext() {
 			return creationalContext;
 		}
 
+		/**
+		 * Returns the instance.
+		 * 
+		 * @return The instance.
+		 */
 		public T getInstance() {
 			return instance;
 		}
@@ -99,10 +136,8 @@ public class TestContext implements Context {
 		this.scope = scope;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.buschmais.testbeans.core.context.TestContext#activate()
+	/**
+	 * Activates the {@link TestContext}.
 	 */
 	public void activate() {
 		if (contextualInstances == null) {
@@ -111,10 +146,8 @@ public class TestContext implements Context {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.buschmais.testbeans.core.context.TestContext#deactivate()
+	/**
+	 * Deactivates the {@link TestContext}.
 	 */
 	public void deactivate() {
 		if (contextualInstances != null) {

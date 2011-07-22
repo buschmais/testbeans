@@ -35,6 +35,9 @@ public class JUnitTestContextExtension implements Extension {
 
 	/**
 	 * Observes the {@link BeforeBeanDiscovery} event of the CDI container.
+	 * 
+	 * @param event
+	 *            The event.
 	 */
 	@SuppressWarnings("unchecked")
 	public void beforeBeanDiscovery(@Observes BeforeBeanDiscovery event) {

@@ -31,13 +31,26 @@ import com.buschmais.testbeans.test.junit.common.bean.producer.ResourceProducer;
  * 
  * @author dirk.mahler
  */
-public class ProducerDisposerTestDelegate {
+public final class ProducerDisposerTestDelegate {
 
+	/**
+	 * Private constructor.
+	 */
+	private ProducerDisposerTestDelegate() {
+
+	}
+
+	/**
+	 * BeforeClass and AfterClass.
+	 */
 	public static void aroundClass() {
 		ResourceProducer resourceProducer = getResourceProducer();
 		Assert.assertTrue(resourceProducer.getResources().isEmpty());
 	}
 
+	/**
+	 * Test.
+	 */
 	@SuppressWarnings("serial")
 	public static void testProduceDispose() {
 		Resource resource = TestContextManager.getInstance().get(
@@ -48,6 +61,11 @@ public class ProducerDisposerTestDelegate {
 		Assert.assertEquals(1, resourceProducer.getResources().size());
 	}
 
+	/**
+	 * Returns the {@link ResourceProducer} instance.
+	 * 
+	 * @return The {@link ResourceProducer} instance.
+	 */
 	private static ResourceProducer getResourceProducer() {
 		return TestContextManager.getInstance().get(ResourceProducer.class);
 	}

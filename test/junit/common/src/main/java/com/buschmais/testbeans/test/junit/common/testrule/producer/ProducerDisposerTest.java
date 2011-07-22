@@ -31,12 +31,18 @@ import com.buschmais.testbeans.test.junit.common.testrule.AbstractTestRuleTest;
  */
 public class ProducerDisposerTest extends AbstractTestRuleTest {
 
+	/**
+	 * BeforeClass.
+	 */
 	@BeforeClass
 	@AfterClass
 	public static void aroundClass() {
 		ProducerDisposerTestDelegate.aroundClass();
 	}
 
+	/**
+	 * Test.
+	 */
 	@Test
 	public void testProduceDispose() {
 		ProducerDisposerTestDelegate.testProduceDispose();

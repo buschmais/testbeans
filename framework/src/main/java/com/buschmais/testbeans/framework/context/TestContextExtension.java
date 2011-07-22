@@ -32,6 +32,11 @@ public class TestContextExtension implements Extension {
 
 	/**
 	 * Observes the {@link AfterBeanDiscovery} event of the CDI container.
+	 * 
+	 * @param event
+	 *            The event.
+	 * @param beanManager
+	 *            The {@link BeanManager}.
 	 */
 	public void afterBeanDiscovery(@Observes AfterBeanDiscovery event,
 			BeanManager beanManager) {
@@ -45,6 +50,9 @@ public class TestContextExtension implements Extension {
 
 	/**
 	 * Observes the {@link BeforeShutdown} event of the CDI container.
+	 * 
+	 * @param event
+	 *            The event.
 	 */
 	public void beforeShutdown(@Observes BeforeShutdown event) {
 		TestContextManager testContextManager = TestContextManager

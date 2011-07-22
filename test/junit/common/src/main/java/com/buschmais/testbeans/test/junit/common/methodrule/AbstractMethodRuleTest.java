@@ -21,10 +21,19 @@ import org.junit.rules.MethodRule;
 
 import com.buschmais.testbeans.junit.TestBeansMethodRule;
 
+/**
+ * Abstract class for all tests using the {@link TestBeansMethodRule}.
+ * 
+ * @author dirk.mahler
+ * 
+ */
 @SuppressWarnings("deprecation")
 public class AbstractMethodRuleTest {
 
+	/**
+	 * The rule.
+	 */
 	@Rule
-	public MethodRule testRule = new TestBeansMethodRule();
+	public MethodRule testRule = new TestBeansMethodRule(); // CS-IGNORE:VisibilityModifierCheck
 
 }
