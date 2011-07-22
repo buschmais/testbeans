@@ -177,7 +177,7 @@ limitations under the License.
 			</dependency>
 			<dependency>
 				<groupId>com.buschmais.testbeans</groupId>
-				<artifactId>testbeans.container.resin</artifactId>
+				<artifactId>testbeans.container.resinse</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

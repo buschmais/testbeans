@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.resin.weldse.testrule.producer;
+package com.buschmais.testbeans.test.junit.resinse.methodrule.context;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -23,15 +23,18 @@ import org.junit.runners.Suite.SuiteClasses;
 import com.buschmais.testbeans.container.resin.ResinSE;
 import com.buschmais.testbeans.framework.container.CdiContainer;
 import com.buschmais.testbeans.junit.TestBeansSuite;
+import com.buschmais.testbeans.test.junit.common.methodrule.context.ContextTest1;
+import com.buschmais.testbeans.test.junit.common.methodrule.context.ContextTest2;
 
 /**
  * Defines a suite using {@link TestBeansSuite}.
  * 
  * @author dirk.mahler
  */
-@SuiteClasses(com.buschmais.testbeans.test.junit.common.testrule.producer.ProducerDisposerTest.class)
+@SuiteClasses({ ContextTest1.class, ContextTest2.class })
 @CdiContainer(ResinSE.class)
 @RunWith(TestBeansSuite.class)
 @Ignore
-public class ProducerDisposerTest {
+public class ContextTest {
+
 }

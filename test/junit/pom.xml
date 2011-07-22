@@ -29,7 +29,7 @@ limitations under the License.
 	<modules>
 		<module>common</module>
 		<module>owbse</module>
-		<module>resin</module>
+		<module>resinse</module>
 		<module>weldse</module>
 	</modules>
 </project>

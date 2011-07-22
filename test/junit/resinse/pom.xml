@@ -19,22 +19,24 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.buschmais.testbeans</groupId>
-		<artifactId>testbeans.container</artifactId>
+		<artifactId>testbeans.test.junit</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>testbeans.container.resin</artifactId>
-	<name>com.buschmais.testbeans.container.resin</name>
+	<artifactId>testbeans.test.junit.resinse</artifactId>
+	<name>com.buschmais.testbeans.test.junit.resinse</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.buschmais.testbeans</groupId>
-			<artifactId>testbeans.framework</artifactId>
+			<artifactId>testbeans.container.resinse</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>resin</artifactId>
+			<groupId>com.buschmais.testbeans</groupId>
+			<artifactId>testbeans.test.junit.common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>

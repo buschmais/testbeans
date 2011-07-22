@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.buschmais.testbeans.test.resin.weldse.methodrule.event;
+package com.buschmais.testbeans.test.junit.resinse.testrule.event;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ import com.buschmais.testbeans.junit.TestBeansSuite;
  * 
  * @author dirk.mahler
  */
-@SuiteClasses(com.buschmais.testbeans.test.junit.common.methodrule.event.EventsTest.class)
+@SuiteClasses(com.buschmais.testbeans.test.junit.common.testrule.event.EventsTest.class)
 @CdiContainer(ResinSE.class)
 @RunWith(TestBeansSuite.class)
 @Ignore
