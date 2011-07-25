@@ -80,7 +80,7 @@ public class TestContextManager {
 	 * @param scopes
 	 *            The scopes.
 	 */
-	public void create(Class<? extends Annotation>... scopes) {
+	public void defineScopes(Class<? extends Annotation>... scopes) {
 		assertStarted(false);
 		for (Class<? extends Annotation> scope : scopes) {
 			if (scope.getAnnotation(NormalScope.class) != null) {
