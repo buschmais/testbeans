@@ -52,12 +52,11 @@ limitations under the License.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.caucho.version>4.0.20</com.caucho.version>
+		<com.caucho.version>4.0.23</com.caucho.version>
 		<javax.enterprise.version>1.0</javax.enterprise.version>
-		<org.apache.openwebbeans.version>1.1.0</org.apache.openwebbeans.version>
-		<org.jboss.weld.se.version>1.1.1.Final</org.jboss.weld.se.version>
+		<org.apache.openwebbeans.version>1.1.2</org.apache.openwebbeans.version>
+		<org.jboss.weld.se.version>1.1.2.Final</org.jboss.weld.se.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
-		<org.testng.version>6.1.1</org.testng.version>
 	</properties>
 
 	<repositories>
@@ -65,14 +64,6 @@ limitations under the License.
 			<id>maven-central-repository</id>
 			<name>Maven central repository</name>
 			<url>http://repo1.maven.org/maven2/</url>
-		</repository>
-
-		<!-- Required for the current beta release of JUnit 4.9, will be removed 
-			as soon as it is available in the central repository -->
-		<repository>
-			<id>sonatype</id>
-			<name>Sonaytpe</name>
-			<url>http://oss.sonatype.org/content/repositories/junit-071</url>
 		</repository>
 
 		<!-- Weld -->

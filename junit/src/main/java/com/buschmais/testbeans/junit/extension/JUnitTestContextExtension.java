@@ -41,7 +41,7 @@ public class JUnitTestContextExtension implements Extension {
 	 */
 	@SuppressWarnings("unchecked")
 	public void beforeBeanDiscovery(@Observes BeforeBeanDiscovery event) {
-		TestContextManager.getInstance().create(SuiteScoped.class,
+		TestContextManager.getInstance().defineScopes(SuiteScoped.class,
 				ClassScoped.class, MethodScoped.class);
 	}
 }
