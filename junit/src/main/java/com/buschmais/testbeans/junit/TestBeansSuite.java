@@ -20,6 +20,8 @@ import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.buschmais.testbeans.framework.container.CdiContainer;
 import com.buschmais.testbeans.framework.container.CdiContainerAdapter;
@@ -34,6 +36,11 @@ import com.buschmais.testbeans.junit.scope.SuiteScoped;
  * @author dirk.mahler
  */
 public class TestBeansSuite extends Suite {
+
+	/**
+	 * The logger.
+	 */
+	private Logger logger = LoggerFactory.getLogger(TestBeansSuite.class);
 
 	/**
 	 * The {@link CdiContainer} annotation as specified on the suite class.
@@ -53,6 +60,7 @@ public class TestBeansSuite extends Suite {
 	public TestBeansSuite(Class<?> klass, RunnerBuilder builder)
 			throws InitializationError {
 		super(klass, builder);
+		logger.info("Initializing {}.", TestBeansSuite.class.getName());
 		container = klass.getAnnotation(CdiContainer.class);
 	}
 
@@ -69,6 +77,7 @@ public class TestBeansSuite extends Suite {
 	public TestBeansSuite(RunnerBuilder builder, Class<?>[] classes)
 			throws InitializationError {
 		super(builder, classes);
+		logger.info("Initializing {}.", TestBeansSuite.class.getName());
 	}
 
 	/**
@@ -76,12 +85,14 @@ public class TestBeansSuite extends Suite {
 	 */
 	@Override
 	public void run(RunNotifier notifier) {
+		logger.debug("Running suite.");
 		TestContextManager testContextManager = TestContextManager
 				.getInstance();
 		CdiContainerAdapter containerAdapter = this.getContainerAdapter();
 		SuiteDescription suiteDescription = new SuiteDescription();
 		try {
 			if (containerAdapter != null) {
+				logger.debug("Starting CDI container.");
 				containerAdapter.start();
 			}
 			testContextManager.activate(SuiteScoped.class, suiteDescription);
@@ -89,7 +100,13 @@ public class TestBeansSuite extends Suite {
 		} finally {
 			testContextManager.deactivate(SuiteScoped.class, suiteDescription);
 			if (containerAdapter != null) {
-				containerAdapter.stop();
+				try {
+					logger.debug("Stopping CDI container.");
+					containerAdapter.stop();
+				} catch (RuntimeException e) {
+					logger.warn("Cannot stop CDI container.", e);
+				}
+
 			}
 		}
 	}
